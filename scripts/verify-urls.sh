@@ -87,6 +87,32 @@ else
   fail=1
 fi
 
+# --- Assert: 200 on every Phase 3 page pair (PT localized slug + EN slug) ---
+# RED until each plan ships its page (mirrors the Phase 2 verify-design.sh
+# RED-first anchor): /uses is live from this plan; /curriculo, /en/resume,
+# /portfolio, /en/portfolio, /now, /en/now land in later plans. This loop is
+# the phase's URL-contract gate — it grows to green as each page ships, never
+# rewritten path by path.
+phase3_paths=(
+  "/curriculo"
+  "/en/resume"
+  "/portfolio"
+  "/en/portfolio"
+  "/uses"
+  "/en/uses"
+  "/now"
+  "/en/now"
+)
+for path in "${phase3_paths[@]}"; do
+  code="$(http_status "${BASE}${path}")"
+  if [ "$code" = "200" ]; then
+    echo "PASS  ${BASE}${path}  → 200"
+  else
+    echo "FAIL  ${BASE}${path}  → ${code} (expected 200)" >&2
+    fail=1
+  fi
+done
+
 if [ "$fail" -ne 0 ]; then
   echo "" >&2
   echo "verify-urls: FAILED — the bilingual / no-trailing-slash contract is not satisfied at ${BASE}" >&2
@@ -94,4 +120,4 @@ if [ "$fail" -ne 0 ]; then
 fi
 
 echo ""
-echo "verify-urls: PASSED — /, /en (200) and /en/ (redirect → /en) all green at ${BASE}"
+echo "verify-urls: PASSED — /, /en (200), /en/ (redirect → /en), and all Phase 3 page pairs green at ${BASE}"

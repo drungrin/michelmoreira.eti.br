@@ -1,0 +1,26 @@
+---
+// PT /uses, built as dist/uses.html and served at "/uses". Content is the
+// annotated setup list (Hardware, Editor and Terminal, Dev Stack, Services
+// and Apps) sourced from the "uses" content collection. The counterpart page
+// for this one is /en/uses (pagePairUrl, not the locale home).
+import { getEntry, render } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Prose from "../components/Prose.astro";
+import { pagePairUrl } from "../lib/pagePairs";
+
+const entry = await getEntry("uses", "pt");
+if (!entry)
+  throw new Error('Missing content entry: collection "uses", id "pt"');
+const { Content } = await render(entry);
+---
+
+<BaseLayout locale="pt" counterpartPath={pagePairUrl("uses", "en")}>
+  <section class="mt-12">
+    <h1 class="text-4xl leading-[1.1] font-semibold tracking-tight sm:text-5xl">
+      Uses
+    </h1>
+    <Prose>
+      <Content />
+    </Prose>
+  </section>
+</BaseLayout>
