@@ -41,10 +41,10 @@ These rules are **locked** and apply to every commit in this repository:
   `🔖 Release ...`, `📝 Docs ...`, `♻️ Refactor ...`, `🎉 Scaffold ...`.
 - **Never add a `Co-Authored-By` trailer** (or any co-author trailer). Pushes with a
   co-author trailer are rejected on this project.
-- **Describe changes technically** — what changed in the code and why. This repository has
-  **no access to external planning documents**, so commit messages must **never reference
-  milestone, phase, plan, or requirement IDs** (no "Phase 1", "INFRA-01", plan numbers,
-  etc.). Such references would dangle and are forbidden here.
+- **Describe changes technically** — what changed in the code and why. Commit messages
+  must **never reference external planning or tracker identifiers** — no milestone, phase,
+  plan, ticket, or requirement IDs of any kind. Such references have no meaning inside
+  this repository and are forbidden here.
 - **Branch naming: `feature/*`.** Work happens on `feature/<short-description>` branches.
 - **`main` is protected — pull-request only.** Direct pushes to `main` are blocked; changes
   land through a reviewed PR whose preview build must pass.

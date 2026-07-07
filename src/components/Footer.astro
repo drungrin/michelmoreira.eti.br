@@ -1,0 +1,37 @@
+---
+import type { Locale } from "../lib/url";
+import { ui } from "../i18n/ui";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const linkClass =
+  "text-accent hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
+---
+
+<!-- Permanent contact block rendered on every page: social links plus the
+     copyright line. External destinations keep literal hrefs; only internal
+     paths go through localeUrl. -->
+<footer class="border-border text-text-muted mt-16 border-t py-8 text-sm">
+  <ul class="flex gap-4">
+    <li>
+      <a href="https://github.com/drungrin" rel="me" class={linkClass}>
+        GitHub
+      </a>
+    </li>
+    <li>
+      <a href="https://www.linkedin.com/in/drungrin" rel="me" class={linkClass}>
+        LinkedIn
+      </a>
+    </li>
+    <li>
+      <a href="mailto:drungrin@gmail.com" class={linkClass}>
+        drungrin@gmail.com
+      </a>
+    </li>
+  </ul>
+  <p class="mt-4">{ui[locale].footerCopyright}</p>
+</footer>

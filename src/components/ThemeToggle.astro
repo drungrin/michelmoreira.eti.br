@@ -1,0 +1,128 @@
+---
+import type { Locale } from "../lib/url";
+import { ui } from "../i18n/ui";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const labels = ui[locale];
+---
+
+<!-- Icon-only theme cycle button: light -> dark -> system. The per-locale
+     labels travel as data attributes so the inline script below stays fully
+     static (hashable for a future Content-Security-Policy). -->
+<button
+  type="button"
+  id="theme-toggle"
+  class="focus-visible:outline-accent flex size-11 items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2"
+  aria-label={labels.themeLabelSystem}
+  data-label-light={labels.themeLabelLight}
+  data-label-dark={labels.themeLabelDark}
+  data-label-system={labels.themeLabelSystem}
+  data-theme="system"
+>
+  <svg
+    class="icon-sun"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <circle cx="12" cy="12" r="4"></circle>
+    <path d="M12 2v2"></path>
+    <path d="M12 20v2"></path>
+    <path d="m4.93 4.93 1.41 1.41"></path>
+    <path d="m17.66 17.66 1.41 1.41"></path>
+    <path d="M2 12h2"></path>
+    <path d="M20 12h2"></path>
+    <path d="m6.34 17.66-1.41 1.41"></path>
+    <path d="m19.07 4.93-1.41 1.41"></path>
+  </svg>
+  <svg
+    class="icon-moon"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+  </svg>
+  <svg
+    class="icon-monitor"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <rect width="20" height="14" x="2" y="3" rx="2"></rect>
+    <line x1="8" x2="16" y1="21" y2="21"></line>
+    <line x1="12" x2="12" y1="17" y2="21"></line>
+  </svg>
+</button>
+
+<style>
+  /* The visible icon is selected purely by the button's data-theme attribute. */
+  svg {
+    display: none;
+  }
+  [data-theme="light"] .icon-sun,
+  [data-theme="dark"] .icon-moon,
+  [data-theme="system"] .icon-monitor {
+    display: block;
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    const btn = document.getElementById("theme-toggle");
+    if (!btn) return;
+    const order = ["light", "dark", "system"];
+    // The stored value is untrusted: normalize anything outside the fixed
+    // three-value set to "system" (absent key included) before any use.
+    const current = () => {
+      const stored = localStorage.getItem("theme");
+      return order.includes(stored) ? stored : "system";
+    };
+    const apply = (state) => {
+      document.documentElement.classList.toggle(
+        "dark",
+        state === "dark" ||
+          (state === "system" &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches),
+      );
+      btn.setAttribute(
+        "aria-label",
+        btn.dataset["label" + state[0].toUpperCase() + state.slice(1)],
+      );
+      btn.dataset.theme = state;
+    };
+    btn.addEventListener("click", () => {
+      const next = order[(order.indexOf(current()) + 1) % order.length];
+      localStorage.setItem("theme", next);
+      apply(next);
+    });
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", () => {
+        if (current() === "system") apply("system");
+      });
+    apply(current());
+  })();
+</script>

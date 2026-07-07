@@ -1,0 +1,41 @@
+---
+import { localeUrl, type Locale } from "../lib/url";
+import { LOCALE_NAME, ui } from "../i18n/ui";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const linkClass =
+  "text-accent hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
+---
+
+<!-- Native language names, no flags. The current locale is inert text; the
+     other locale links to its exact counterpart page through localeUrl. -->
+<nav aria-label={ui[locale].languageLabel} class="text-sm">
+  {
+    locale === "pt" ? (
+      <span aria-current="true" class="text-text-muted">
+        {LOCALE_NAME.pt}
+      </span>
+    ) : (
+      <a href={localeUrl("pt")} class={linkClass}>
+        {LOCALE_NAME.pt}
+      </a>
+    )
+  }
+  {" / "}
+  {
+    locale === "en" ? (
+      <span aria-current="true" class="text-text-muted">
+        {LOCALE_NAME.en}
+      </span>
+    ) : (
+      <a href={localeUrl("en")} class={linkClass}>
+        {LOCALE_NAME.en}
+      </a>
+    )
+  }
+</nav>
