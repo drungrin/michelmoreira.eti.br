@@ -1,10 +1,58 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
-/* Tailwind v4 CSS-first theme. --font-inter is provided by the native Astro
-   Fonts API (self-hosted, configured in astro.config.mjs). font-sans resolves
-   to it with a system-font fallback stack. Real typography lands in Phase 2. */
-@theme {
-  --font-sans:
-    var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
-    Roboto, Helvetica, Arial, sans-serif;
+/* Class-based dark theming: a .dark class on <html> scopes dark: variants and
+   the variable flip below, so stored user preference wins over the OS setting. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Semantic color tokens: light values in :root, dark values under .dark.
+   Utilities carry var() references, so the theme flips at runtime. */
+:root {
+  --surface: #ffffff;
+  --surface-alt: #f8fafc;
+  --text: #0f172a;
+  --text-muted: #475569;
+  --border: #e2e8f0;
+  --accent: #2563eb;
+}
+.dark {
+  --surface: #0f172a;
+  --surface-alt: #1e293b;
+  --text: #e2e8f0;
+  --text-muted: #94a3b8;
+  --border: #334155;
+  --accent: #60a5fa;
+}
+
+/* The inline theme mode keeps var() references intact inside generated
+   utilities (the plain mode resolves them at definition time, which would
+   freeze the light values and break the .dark flip). --font-inter is provided
+   by the native Astro Fonts API (self-hosted, configured in astro.config.mjs). */
+@theme inline {
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace;
+}
+
+/* Long-form typography inherits the semantic tokens, so prose content is
+   theme-aware through the same variable flip without a separate dark fork. */
+.prose {
+  --tw-prose-body: var(--text);
+  --tw-prose-headings: var(--text);
+  --tw-prose-links: var(--accent);
+  --tw-prose-bold: var(--text);
+  --tw-prose-code: var(--text);
+  --tw-prose-pre-bg: var(--surface-alt);
+  --tw-prose-quotes: var(--text-muted);
+  --tw-prose-counters: var(--text-muted);
+  --tw-prose-bullets: var(--text-muted);
+  --tw-prose-captions: var(--text-muted);
+  --tw-prose-hr: var(--border);
+  --tw-prose-th-borders: var(--border);
+  --tw-prose-td-borders: var(--border);
 }
