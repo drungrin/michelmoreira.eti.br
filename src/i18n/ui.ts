@@ -32,6 +32,7 @@ export const ui: Record<
     themeLabelDark: string;
     themeLabelSystem: string;
     languageLabel: string;
+    footerCopyright: string;
   }
 > = {
   pt: {
@@ -40,6 +41,7 @@ export const ui: Record<
     themeLabelDark: "Mudar tema, atual: escuro",
     themeLabelSystem: "Mudar tema, atual: sistema",
     languageLabel: "Idioma",
+    footerCopyright: "© 2026 Michel Moreira",
   },
   en: {
     title: "Michel Moreira · Senior Software Architect",
@@ -47,5 +49,6 @@ export const ui: Record<
     themeLabelDark: "Change theme, current: dark",
     themeLabelSystem: "Change theme, current: system",
     languageLabel: "Language",
+    footerCopyright: "© 2026 Michel Moreira",
   },
 };
