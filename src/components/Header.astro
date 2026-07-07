@@ -14,7 +14,14 @@ interface Props {
 
 const { locale, counterpartPath } = Astro.props;
 
-const currentPath = Astro.url.pathname;
+// With build.format: "file", Astro.url.pathname reflects the internal build
+// file path ("/uses.html", "/en/uses.html", "/index.html"), not the served
+// no-trailing-slash URL every href in this app is built from (localeUrl /
+// pagePairUrl). Normalize it to the same convention before comparing, or
+// aria-current/accent never match a real nav href.
+const currentPath = Astro.url.pathname
+  .replace(/\/index\.html$/, "/")
+  .replace(/\.html$/, "");
 const navItems = [
   { href: pagePairUrl("resume", locale), label: ui[locale].navResume },
   { href: pagePairUrl("portfolio", locale), label: ui[locale].navPortfolio },
