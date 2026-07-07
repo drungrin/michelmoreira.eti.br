@@ -1,21 +1,18 @@
 ---
-// PT home (root, default locale) → dist/index.html → served at "/".
-// Minimal REAL hero (D-01): name + role + experience one-liner + contact links.
-// Unstyled by intent — Phase 2 restyles, Phase 3 expands. The "Português / English"
-// switcher is provided by BaseLayout and links this page to /en (D-04).
-import BaseLayout from '../layouts/BaseLayout.astro';
+// PT home (root, default locale), built as dist/index.html and served at "/".
+// Content renders inside the layout's main element; contact links live in the
+// site footer. The counterpart page for this one is /en.
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout locale="pt">
-  <main>
-    <h1>Michel Moreira</h1>
-    <p>Senior Software Architect</p>
-    <p>20+ anos construindo software — arquitetura, low-code e DevOps.</p>
-
-    <ul>
-      <li><a href="https://github.com/drungrin" rel="me">GitHub</a></li>
-      <li><a href="https://www.linkedin.com/in/drungrin" rel="me">LinkedIn</a></li>
-      <li><a href="mailto:drungrin@gmail.com">drungrin@gmail.com</a></li>
-    </ul>
-  </main>
+  <section class="mt-12">
+    <h1 class="text-4xl leading-[1.1] font-semibold tracking-tight sm:text-5xl">
+      Michel Moreira
+    </h1>
+    <p class="text-text-muted mt-2">Senior Software Architect</p>
+    <p class="mt-4">
+      20+ anos construindo software. Arquitetura, low-code e DevOps.
+    </p>
+  </section>
 </BaseLayout>

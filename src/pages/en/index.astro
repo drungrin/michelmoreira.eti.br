@@ -1,20 +1,18 @@
 ---
-// EN home → dist/en.html → served at "/en" (NO trailing slash — canonical).
-// EN hero is the AI-generated-then-human-reviewed translation of the PT one-liner
-// (D-06), to be reviewed in the PR preview. Same structure/contact links as PT.
-import BaseLayout from '../../layouts/BaseLayout.astro';
+// EN home, built as dist/en.html and served at "/en" (no trailing slash, the
+// canonical form). The EN copy is a human-reviewed translation of the PT page,
+// checked in the PR preview before merge. Structure mirrors the PT page.
+import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout locale="en">
-  <main>
-    <h1>Michel Moreira</h1>
-    <p>Senior Software Architect</p>
-    <p>20+ years building software — architecture, low-code, and DevOps.</p>
-
-    <ul>
-      <li><a href="https://github.com/drungrin" rel="me">GitHub</a></li>
-      <li><a href="https://www.linkedin.com/in/drungrin" rel="me">LinkedIn</a></li>
-      <li><a href="mailto:drungrin@gmail.com">drungrin@gmail.com</a></li>
-    </ul>
-  </main>
+  <section class="mt-12">
+    <h1 class="text-4xl leading-[1.1] font-semibold tracking-tight sm:text-5xl">
+      Michel Moreira
+    </h1>
+    <p class="text-text-muted mt-2">Senior Software Architect</p>
+    <p class="mt-4">
+      20+ years building software. Architecture, low-code, and DevOps.
+    </p>
+  </section>
 </BaseLayout>
