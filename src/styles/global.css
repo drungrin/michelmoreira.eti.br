@@ -56,3 +56,27 @@
   --tw-prose-th-borders: var(--border);
   --tw-prose-td-borders: var(--border);
 }
+
+/* Print contract for the resume page (PAGE-03), consumed by the Plan 06
+   Playwright PDF pipeline: A4 page size, forced light color regardless of
+   the visitor's theme, header/footer/switcher/PDF-link chrome hidden, and
+   no job entry or achievement group ever splits across a page. */
+@media print {
+  @page {
+    size: A4;
+    margin: 2cm;
+  }
+  body {
+    background: white;
+    color: black;
+  }
+  header,
+  footer,
+  .no-print {
+    display: none;
+  }
+  .job-entry,
+  .achievements {
+    break-inside: avoid;
+  }
+}
