@@ -5,8 +5,9 @@
 # Asserts the theming contract against dist/ plus source hygiene under src/:
 #   1. A pre-paint theme script (reads localStorage) is inlined before </head>
 #      on both home pages, so the .dark class is applied before first paint.
-#   2. Fonts are self-hosted: @font-face CSS is emitted and .woff2 files ship
-#      with the build.
+#   2. Fonts are self-hosted: @font-face CSS is emitted covering weights 400
+#      and 600, .woff2 files ship with the build (a single variable-font file
+#      may serve both weights), and a font preload link is present.
 #   3. Semantic color tokens are defined for light AND dark themes in the
 #      built CSS and reach usage sites as var() references, so the theme can
 #      flip at runtime without rebuilding styles.
@@ -41,7 +42,7 @@ for page in dist/index.html dist/en.html; do
   fi
 done
 
-# --- 2. Font pipeline: @font-face emitted + .woff2 files served --------------
+# --- 2. Font pipeline: @font-face at both weights + .woff2 served + preload ---
 if grep -q '@font-face' dist/index.html; then
   echo "PASS  dist/index.html: @font-face emitted"
 else
@@ -49,11 +50,29 @@ else
   fail=1
 fi
 
+for weight in 400 600; do
+  if grep -qE "font-weight:[[:space:]]*${weight}" dist/index.html; then
+    echo "PASS  dist/index.html: @font-face covers weight ${weight}"
+  else
+    echo "FAIL  dist/index.html: no @font-face for weight ${weight}" >&2
+    fail=1
+  fi
+done
+
+# A variable font serves multiple weights from one file, so require >= 1 file
+# and rely on the weight checks above for coverage.
 woff2_count="$(find dist/_astro/fonts -name '*.woff2' 2>/dev/null | wc -l || true)"
-if [ "$woff2_count" -ge 2 ]; then
+if [ "$woff2_count" -ge 1 ]; then
   echo "PASS  dist/_astro/fonts: ${woff2_count} .woff2 file(s) served"
 else
-  echo "FAIL  dist/_astro/fonts: expected at least 2 .woff2 files, found ${woff2_count}" >&2
+  echo "FAIL  dist/_astro/fonts: no .woff2 files served with the build" >&2
+  fail=1
+fi
+
+if grep -q 'as="font"' dist/index.html; then
+  echo "PASS  dist/index.html: font preload link present"
+else
+  echo "FAIL  dist/index.html: no font preload link (font must be preloaded)" >&2
   fail=1
 fi
 
