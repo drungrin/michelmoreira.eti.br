@@ -1,28 +1,59 @@
 ---
 import { localeUrl, type Locale } from "../lib/url";
-import { BRAND } from "../i18n/ui";
+import { pagePairUrl } from "../lib/pagePairs";
+import { BRAND, ui } from "../i18n/ui";
 import ThemeToggle from "./ThemeToggle.astro";
 import LanguageSwitcher from "./LanguageSwitcher.astro";
 
 interface Props {
   locale: Locale;
+  /** Current page's exact translated counterpart, passed through to
+   * LanguageSwitcher (see pagePairUrl in lib/pagePairs.ts). */
+  counterpartPath?: string;
 }
 
-const { locale } = Astro.props;
+const { locale, counterpartPath } = Astro.props;
+
+const currentPath = Astro.url.pathname;
+const navItems = [
+  { href: pagePairUrl("resume", locale), label: ui[locale].navResume },
+  { href: pagePairUrl("portfolio", locale), label: ui[locale].navPortfolio },
+  { href: pagePairUrl("uses", locale), label: ui[locale].navUses },
+  { href: pagePairUrl("now", locale), label: ui[locale].navNow },
+];
 ---
 
-<!-- Static header in normal document flow: brand link left, controls right.
-     The flex row accepts future nav items between the two sides without
-     restructuring; it renders no section links today. -->
-<header class="flex items-center justify-between py-8">
-  <a
-    href={localeUrl(locale)}
-    class="text-text hover:text-accent focus-visible:outline-accent text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2"
-  >
-    {BRAND}
-  </a>
-  <div class="flex items-center gap-2">
-    <ThemeToggle locale={locale} />
-    <LanguageSwitcher locale={locale} />
+<!-- Two-row header at all breakpoints (no hamburger, no JS). Row 1 unchanged
+     from Phase 2: brand left, controls right. Row 2 (new) is the section nav;
+     it wraps on narrow viewports instead of collapsing into a menu. -->
+<header class="py-8">
+  <div class="flex items-center justify-between">
+    <a
+      href={localeUrl(locale)}
+      class="text-text hover:text-accent focus-visible:outline-accent text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2"
+    >
+      {BRAND}
+    </a>
+    <div class="flex items-center gap-2">
+      <ThemeToggle locale={locale} />
+      <LanguageSwitcher locale={locale} counterpartPath={counterpartPath} />
+    </div>
   </div>
+  <nav class="mt-4 flex flex-wrap gap-4 text-sm">
+    {
+      navItems.map((item) => (
+        <a
+          href={item.href}
+          aria-current={currentPath === item.href ? "page" : undefined}
+          class={
+            currentPath === item.href
+              ? "text-accent focus-visible:outline-accent focus-visible:outline-2 focus-visible:outline-offset-2"
+              : "text-text hover:text-accent focus-visible:outline-accent focus-visible:outline-2 focus-visible:outline-offset-2"
+          }
+        >
+          {item.label}
+        </a>
+      ))
+    }
+  </nav>
 </header>

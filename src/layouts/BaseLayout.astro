@@ -10,9 +10,13 @@ import Footer from "../components/Footer.astro";
 
 interface Props {
   locale: Locale;
+  /** Current page's exact translated counterpart, threaded down to Header ->
+   * LanguageSwitcher (see pagePairUrl in lib/pagePairs.ts). Optional so pages
+   * without a pairing (e.g. home) still render safely. */
+  counterpartPath?: string;
 }
 
-const { locale } = Astro.props;
+const { locale, counterpartPath } = Astro.props;
 const lang = HTML_LANG[locale];
 const title = ui[locale].title;
 // Indexable from day one: this shell intentionally emits no robots-exclusion meta.
@@ -41,7 +45,7 @@ const title = ui[locale].title;
   </head>
   <body class="bg-surface text-text font-sans text-lg leading-[1.6]">
     <div class="mx-auto max-w-2xl px-4 sm:px-6">
-      <Header locale={locale} />
+      <Header locale={locale} counterpartPath={counterpartPath} />
       <main>
         <slot />
       </main>

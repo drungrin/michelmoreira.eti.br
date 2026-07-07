@@ -33,6 +33,18 @@ export const ui: Record<
     themeLabelSystem: string;
     languageLabel: string;
     footerCopyright: string;
+    navResume: string;
+    navPortfolio: string;
+    navUses: string;
+    navNow: string;
+    ctaResumeTitle: string;
+    ctaResumeDesc: string;
+    ctaPortfolioTitle: string;
+    ctaPortfolioDesc: string;
+    ctaContactTitle: string;
+    ctaContactDesc: string;
+    pdfDownloadLabel: string;
+    nowUpdatedLabel: string;
   }
 > = {
   pt: {
@@ -42,6 +54,18 @@ export const ui: Record<
     themeLabelSystem: "Mudar tema, atual: sistema",
     languageLabel: "Idioma",
     footerCopyright: "© 2026 Michel Moreira",
+    navResume: "Currículo",
+    navPortfolio: "Portfolio",
+    navUses: "Uses",
+    navNow: "Now",
+    ctaResumeTitle: "Currículo",
+    ctaResumeDesc: "Experiência, formação e o PDF para download.",
+    ctaPortfolioTitle: "Portfolio",
+    ctaPortfolioDesc: "Cases de arquitetura ao longo de 20 anos de carreira.",
+    ctaContactTitle: "Contato",
+    ctaContactDesc: "Envie um e-mail direto para drungrin@gmail.com.",
+    pdfDownloadLabel: "Baixar currículo em PDF",
+    nowUpdatedLabel: "Atualizado em",
   },
   en: {
     title: "Michel Moreira · Senior Software Architect",
@@ -50,5 +74,17 @@ export const ui: Record<
     themeLabelSystem: "Change theme, current: system",
     languageLabel: "Language",
     footerCopyright: "© 2026 Michel Moreira",
+    navResume: "Resume",
+    navPortfolio: "Portfolio",
+    navUses: "Uses",
+    navNow: "Now",
+    ctaResumeTitle: "Resume",
+    ctaResumeDesc: "Experience, education, and the PDF download.",
+    ctaPortfolioTitle: "Portfolio",
+    ctaPortfolioDesc: "Architecture cases across a 20 year career.",
+    ctaContactTitle: "Contact",
+    ctaContactDesc: "Send an email directly to drungrin@gmail.com.",
+    pdfDownloadLabel: "Download resume as PDF",
+    nowUpdatedLabel: "Updated",
   },
 };
