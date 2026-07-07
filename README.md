@@ -55,3 +55,7 @@ These rules are **locked** and apply to every commit in this repository:
 
 Pushes to `main` deploy to production via the Cloudflare Pages git integration; every branch
 and pull request gets its own `*.pages.dev` preview URL. No manual deploy step, no wrangler.
+
+The Cloudflare Pages build command is `npm run build` (not a bare `astro build` — the build
+image does not expose `node_modules` binaries on `PATH`). The production deployment is live at
+<https://michelmoreira-eti-br.pages.dev> until the custom domain is cut over.
