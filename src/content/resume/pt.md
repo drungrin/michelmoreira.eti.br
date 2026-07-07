@@ -3,16 +3,24 @@ name: "Michel Moreira"
 title: "Senior Software Architect"
 updatedDate: "2026-07-07"
 experience:
-  - role: "Arquiteto de Software Sênior"
-    company: "Cronapp"
-    period: "2018 - atual"
+  - role: "Arquiteto de Software Transversal"
+    company: "Techne"
+    period: "2026 - atual"
+    achievements:
+      - "Atuo como arquiteto transversal a todos os produtos da Techne, sem pertencer a uma equipe fixa, trabalhando com todas elas."
+      - "Modernizo processos batch legados em VB6 para Spring Batch (Java 25, Spring Boot 4) expostos via REST, mantendo paridade 1:1 com o sistema original; o volume de processos inviabilizava a reescrita havia anos."
+      - "Estruturei o trabalho para agentes de IA: contrato arquitetural versionado no repositório, acesso ao banco real via MCP e testes de caracterização que executam o binário VB original via SSH para gerar os gabaritos que o Java precisa reproduzir."
+  - role: "Arquiteto Líder da Plataforma Cronapp"
+    company: "Techne"
+    period: "2018 - 2026"
     achievements:
       - "Arquitetei, projetei e revisei a implementação da plataforma low-code Cronapp, e estabeleci a infraestrutura de QA e a estratégia de testes da plataforma."
       - "Conduzi a reconstrução completa das aplicações críticas da empresa: upgrade de software e sistema operacional, controle de configuração de código e sistema, ambientes de pré-produção e planos de backup e recuperação."
-      - "Gerencio diretamente as equipes de desenvolvimento, com orientação técnica direta."
-      - "Lidero iniciativas de segurança nas várias camadas da arquitetura, com pesquisa contínua de vulnerabilidades baseada no OWASP Top 10 e ajustes de código nas linguagens envolvidas."
+      - "Geri diretamente as equipes de desenvolvimento, com orientação técnica direta e mentoria de Tech Leads."
+      - "Liderei iniciativas de segurança nas várias camadas da arquitetura, com pesquisa contínua de vulnerabilidades baseada no OWASP Top 10, do relatório à correção no código."
       - "Implementei gestão de configuração e o método Agile/Scrum, formalizando papéis de equipe, controle de qualidade e padronização da documentação de projeto."
-      - "(a confirmar com Michel) Desde 2024, arquitetura serverless orientada a eventos com Step Functions e Amazon Bedrock (Claude Sonnet), com RAG usando pgvector no RDS PostgreSQL, para automação de documentação técnica. Stack de nuvem atual: Lambda, ECS, SAM e Kubernetes."
+      - "Desenhei uma arquitetura serverless e orientada a eventos para automação de documentação técnica: AWS Step Functions orquestrando Amazon Bedrock (Claude Sonnet), com RAG sobre pgvector no RDS PostgreSQL, reduzindo um processamento que levava dias para menos de uma hora."
+      - "No último ano, mentorei Tech Leads dos produtos da empresa na adoção de IA; os resultados foram apresentados no \"checkpoint\", evento interno mensal da Techne."
   - role: "CTO"
     company: "Maker Planet"
     period: "2009 - atual"
@@ -22,12 +30,12 @@ experience:
       - "Atuei como consultor técnico sênior para clientes em todo o Brasil: levantamento de requisitos, dimensionamento de banco de dados e análise de rede."
       - "Testei performance de aplicações web com Apache JMeter, com geração de relatórios e gráficos."
       - "Pesquisei e desenvolvi um software e engine de IoT para monitorar em tempo real a localização de equipes e máquinas em ambientes industriais, em conformidade com a LGPD e a legislação trabalhista."
-      - "(a confirmar: nome exato da plataforma, ver nota de ambiguidade no checkpoint) Atuei como fornecedor de tecnologia low-code para desenvolvedores, e forneci SDK, API e integração de software para ISVs em múltiplas linguagens e ferramentas."
+      - "Continuei atuando na plataforma low-code Softwell Maker, iniciada na Softwell Solutions, como fornecedor de tecnologia para ISVs: SDK, API e integração de software em múltiplas linguagens e ferramentas."
   - role: "Engenheiro de Software Sênior"
     company: "Softwell Solutions"
     period: "2007 - 2012"
     achievements:
-      - "Engenheiro líder no desenvolvimento e na implementação da plataforma low-code Sofwell Maker."
+      - "Engenheiro líder no desenvolvimento e na implementação da plataforma low-code Softwell Maker."
       - "Conduzi a expansão e a implantação da plataforma em múltiplos escritórios, atendendo exigências governamentais."
       - "Implementei proteção de software com chaves de hardware Sentinel."
       - "Transformei o processo de desenvolvimento de SVN para Git, com um modelo de branching para features, alpha, beta e releases."
@@ -36,8 +44,8 @@ experience:
     company: "Copam Informática"
     period: "2005 - 2007"
     achievements:
-      - "(a confirmar: desfecho concreto) Liderei o desenvolvimento de software e implementei projetos na área de governo."
-      - "(a confirmar: desfecho concreto) Implantei e mantive aplicações de software customizadas."
+      - "Desenvolvi o padrão, a metodologia de desenvolvimento que definiu a arquitetura e o processo de construção dos produtos modernos da empresa: Orçamento, Patrimônio e Plano Plurianual."
+      - "Implantei e mantive esses produtos para clientes do setor de governo, seguindo o padrão que defini."
   - role: "Desenvolvedor de Software"
     company: "Total Soluções"
     period: "2002 - 2005"
@@ -85,8 +93,8 @@ education:
     year: "2020 - em andamento"
 ---
 
-Entrei no mercado de tecnologia em 2002 migrando um sistema de ponto de venda de Clipper para Delphi, na Total Soluções. Passei por sistemas de governo em IBM WebSphere ND atendendo toda a população do estado de Rondônia (Softwell Solutions, 2007 a 2012), por virtualização, containers e IoT industrial como CTO da Maker Planet desde 2009, e desde 2018 arquiteto a plataforma low-code da Cronapp, com foco em segurança baseada no OWASP Top 10 e em QA.
+Arquiteto de software há mais de 20 anos: comecei migrando um sistema de ponto de venda de Clipper para Delphi em 2002, na Total Soluções, passei por sistemas de governo em IBM WebSphere ND atendendo toda a população do estado de Rondônia (Softwell Solutions, 2007 a 2012), por virtualização, containers e IoT industrial como CTO da Maker Planet desde 2009, e hoje uso IA em produção na Techne para destravar o tipo de projeto que ficava anos na gaveta.
 
-(a confirmar com Michel) Desde 2024, atuo com GenAI em produção na AWS: arquitetura serverless orientada a eventos com Step Functions e Amazon Bedrock (Claude Sonnet), com RAG usando pgvector no RDS PostgreSQL para automação de documentação técnica. Stack de nuvem atual: Lambda, ECS, SAM e Kubernetes.
+O caso mais recente: modernização de processos batch legados em VB6 para Spring Batch (Java 25, Spring Boot 4) expostos via REST, mantendo paridade 1:1 com o sistema original. O volume de processos inviabilizava a reescrita havia anos; o que destravou foi estruturar o trabalho para agentes de IA, com contrato arquitetural versionado no repositório, acesso ao banco real via MCP e testes de caracterização que executam o binário VB original via SSH para gerar os gabaritos que o Java precisa reproduzir. Antes disso, desenhei uma arquitetura serverless e orientada a eventos para automação de documentação técnica na Techne: AWS Step Functions orquestrando Amazon Bedrock (Claude Sonnet), com RAG sobre pgvector no RDS PostgreSQL, reduzindo um processamento que levava dias para menos de uma hora.
 
-Mais de duas décadas de mercado brasileiro (24 anos, desde 2002) me deixaram cético com promessa de tecnologia nova: a primeira pergunta é o que ela resolve que a stack anterior não resolvia, e a que custo. (a confirmar: um trade-off ou limitação real e recente para fechar o texto, em vez de terminar em generalidade.)
+De 2018 até o início de 2026 fui arquiteto líder da plataforma low-code Cronapp na Techne; este ano o papel mudou de escopo, e passei a atuar como arquiteto transversal a todos os produtos da empresa, sem pertencer a uma equipe mas trabalhando com todas. A parte difícil nunca foi a tecnologia: na migração de um time inteiro de SVN para Git, anos atrás, o obstáculo não foi o Git, foi a cultura, fazer o time adotar e usar a ferramenta de fato. O mesmo vale para IA hoje: a tecnologia resolve menos do que a adoção.

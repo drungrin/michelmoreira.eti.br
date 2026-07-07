@@ -3,16 +3,24 @@ name: "Michel Moreira"
 title: "Senior Software Architect"
 updatedDate: "2026-07-07"
 experience:
-  - role: "Senior Software Architect"
-    company: "Cronapp"
-    period: "2018 - present"
+  - role: "Transversal Software Architect"
+    company: "Techne"
+    period: "2026 - present"
+    achievements:
+      - "Act as a transversal architect across all of Techne's products, not tied to one fixed team but working with all of them."
+      - "Modernizing legacy VB6 batch processes into Spring Batch (Java 25, Spring Boot 4) exposed via REST, keeping 1:1 parity with the original system; the process volume had made a rewrite unfeasible for years."
+      - "Structured the work for AI agents: a versioned architectural contract in the repository, access to the real database via MCP, and characterization tests that run the original VB binary via SSH to generate the fixtures the Java code must reproduce."
+  - role: "Lead Architect of the Cronapp Platform"
+    company: "Techne"
+    period: "2018 - 2026"
     achievements:
       - "Architected, designed, and reviewed the implementation of the Cronapp low-code platform, and established the platform's QA infrastructure and test strategy."
       - "Led a complete rebuild of the company's mission-critical applications: software and operating system upgrades, source code and system configuration controls, pre-production environments, and backup and recovery plans."
-      - "Directly manage the development teams, with hands-on technical guidance."
-      - "Lead security initiatives across multiple architecture layers, with continuous vulnerability research based on the OWASP Top 10 and code changes in the languages involved."
+      - "Directly managed the development teams, with hands-on technical guidance and Tech Lead mentoring."
+      - "Led security initiatives across multiple architecture layers, with continuous vulnerability research based on the OWASP Top 10, from vulnerability report to code fix."
       - "Implemented configuration management and the Agile/Scrum method, formalizing team roles, quality control, and standardized project documentation."
-      - "(to confirm with Michel) Since 2024, serverless, event-driven architecture with Step Functions and Amazon Bedrock (Claude Sonnet), with RAG using pgvector on RDS PostgreSQL, for technical documentation automation. Current cloud stack: Lambda, ECS, SAM, and Kubernetes."
+      - "Designed a serverless, event-driven architecture for technical documentation automation: AWS Step Functions orchestrating Amazon Bedrock (Claude Sonnet), with RAG over pgvector on RDS PostgreSQL, cutting a processing job that took days down to under an hour."
+      - "In the last year, mentored Tech Leads across the company's products on AI adoption; the results were presented at \"checkpoint\", Techne's monthly internal event."
   - role: "CTO"
     company: "Maker Planet"
     period: "2009 - present"
@@ -22,12 +30,12 @@ experience:
       - "Served as senior technical consultant for customers across Brazil: requirements gathering, database sizing, and network analysis."
       - "Tested web application performance with Apache JMeter, generating reports and graphics."
       - "Researched and developed an IoT software and engine to monitor the real-time location of teams and machines in industrial environments, in compliance with the LGPD and Brazilian labor law."
-      - "(to confirm: exact platform name, see the ambiguity note at the checkpoint) Served as a low-code technology provider for developers, and provided SDK, API, and software integration for ISVs across multiple languages and tools."
+      - "Continued working on the Softwell Maker low-code platform, started at Softwell Solutions, as a technology provider for ISVs: SDK, API, and software integration across multiple languages and tools."
   - role: "Senior Software Engineer"
     company: "Softwell Solutions"
     period: "2007 - 2012"
     achievements:
-      - "Lead engineer in the development and implementation of the Sofwell Maker low-code platform."
+      - "Lead engineer in the development and implementation of the Softwell Maker low-code platform."
       - "Drove the platform's expansion and deployment across multiple offices, meeting government requirements."
       - "Implemented software protection with Sentinel hardware keys."
       - "Transformed the development process from SVN to Git, with a branching model for features, alpha, beta, and releases."
@@ -36,8 +44,8 @@ experience:
     company: "Copam Informática"
     period: "2005 - 2007"
     achievements:
-      - "(to confirm: concrete outcome) Led software development and implemented projects in the government sector."
-      - "(to confirm: concrete outcome) Deployed and maintained custom software applications."
+      - "Developed the \"padrão\", the development methodology that defined the architecture and build process for the company's new modern products: Orçamento, Patrimônio, and Plano Plurianual."
+      - "Deployed and maintained those products for government sector clients, following the standard I defined."
   - role: "Software Developer"
     company: "Total Soluções"
     period: "2002 - 2005"
@@ -85,8 +93,8 @@ education:
     year: "2020 - in progress"
 ---
 
-I entered the tech market in 2002 migrating a point-of-sale system from Clipper to Delphi, at Total Soluções. I moved through government systems on IBM WebSphere ND serving the entire population of Rondônia State (Softwell Solutions, 2007 to 2012), through virtualization, containers, and industrial IoT as CTO of Maker Planet since 2009, and since 2018 I architect the Cronapp low-code platform, with a focus on security based on the OWASP Top 10 and on QA.
+Software architect for more than 20 years: I started migrating a point-of-sale system from Clipper to Delphi in 2002, at Total Soluções, moved through government systems on IBM WebSphere ND serving the entire population of Rondônia State (Softwell Solutions, 2007 to 2012), through virtualization, containers, and industrial IoT as CTO of Maker Planet since 2009, and today I use AI in production at Techne to unlock the kind of project that used to sit in a drawer for years.
 
-(to confirm with Michel) Since 2024, I have worked on GenAI in production on AWS: serverless, event-driven architecture with Step Functions and Amazon Bedrock (Claude Sonnet), with RAG using pgvector on RDS PostgreSQL for technical documentation automation. Current cloud stack: Lambda, ECS, SAM, and Kubernetes.
+The most recent case: modernizing legacy VB6 batch processes into Spring Batch (Java 25, Spring Boot 4) exposed via REST, keeping 1:1 parity with the original system. The process volume had made a rewrite unfeasible for years; what unlocked it was structuring the work for AI agents, with a versioned architectural contract in the repository, access to the real database via MCP, and characterization tests that run the original VB binary via SSH to generate the fixtures the Java code must reproduce. Before that, I designed a serverless, event-driven architecture for technical documentation automation at Techne: AWS Step Functions orchestrating Amazon Bedrock (Claude Sonnet), with RAG over pgvector on RDS PostgreSQL, cutting a processing job that took days down to under an hour.
 
-More than two decades in the Brazilian market (24 years, since 2002) left me skeptical of new technology promises: the first question is what it solves that the previous stack did not, and at what cost. (to confirm: a real, recent trade-off or limitation to close the text, instead of ending on generality.)
+From 2018 until early 2026 I was the lead architect of the Cronapp low-code platform at Techne; this year the role's scope changed, and I moved to acting as a transversal architect across all of the company's products, not tied to one team but working with all of them. The hard part was never the technology: migrating an entire team from SVN to Git, years ago, the obstacle was not Git, it was culture, getting the team to actually adopt and use the tool. The same holds for AI today: the technology solves less than the adoption does.
