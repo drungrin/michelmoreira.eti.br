@@ -1,0 +1,97 @@
+#!/usr/bin/env bash
+#
+# verify-urls.sh — walking-skeleton happy-path gate (D-15).
+#
+# Asserts the bilingual + no-trailing-slash URL contract against a live base URL
+# (a Cloudflare *.pages.dev preview or the production https://michelmoreira.eti.br).
+#
+# Canonical decision (Pitfall A): `/en` (NO trailing slash) is canonical.
+#   - `/`     → 200 (PT home, default locale, unprefixed)
+#   - `/en`   → 200 (EN home, canonical no-trailing-slash)
+#   - `/en/`  → a 3xx redirect whose Location resolves to `/en` (alias only)
+#
+# Redirects are OBSERVED, not followed (curl does not follow location redirects),
+# so the raw status of each path is asserted directly. Created BEFORE deployment: it
+# is the failing end-to-end test that turns green only once plan 01-05 deploys to
+# *.pages.dev. It is reusable against both preview and production URLs.
+#
+# Usage: scripts/verify-urls.sh https://<hash>.pages.dev
+#        scripts/verify-urls.sh https://michelmoreira.eti.br
+
+set -euo pipefail
+
+if [ "$#" -ne 1 ]; then
+  echo "usage: $0 <base-url>   e.g. $0 https://<hash>.pages.dev" >&2
+  exit 2
+fi
+
+# Normalise: strip any trailing slash from the supplied base URL.
+BASE="${1%/}"
+
+fail=0
+
+# Return the raw HTTP status code for a URL WITHOUT following redirects.
+# On a connection/DNS failure curl emits "000" — treat that as an unreachable host.
+http_status() {
+  curl -sS -o /dev/null -w '%{http_code}' "$1" 2>/dev/null || true
+}
+
+# Return the Location header for a URL WITHOUT following redirects.
+location_header() {
+  curl -sS -o /dev/null -D - "$1" 2>/dev/null \
+    | tr -d '\r' \
+    | awk 'tolower($1) == "location:" { print $2 }' \
+    | tail -n1
+}
+
+# --- Assert: ${BASE}/ → 200 (PT home) ---
+root_code="$(http_status "${BASE}/" )"
+if [ "$root_code" = "200" ]; then
+  echo "PASS  ${BASE}/  → 200 (PT home)"
+else
+  echo "FAIL  ${BASE}/  → ${root_code} (expected 200 — PT home)" >&2
+  fail=1
+fi
+
+# --- Assert: ${BASE}/en → 200 (EN home, canonical no trailing slash) ---
+en_code="$(http_status "${BASE}/en" )"
+if [ "$en_code" = "200" ]; then
+  echo "PASS  ${BASE}/en  → 200 (EN home, canonical)"
+else
+  echo "FAIL  ${BASE}/en  → ${en_code} (expected 200 — canonical EN home)" >&2
+  fail=1
+fi
+
+# --- Assert: ${BASE}/en/ → 3xx redirect to canonical /en (308 expected) ---
+ens_code="$(http_status "${BASE}/en/" )"
+if [ "$ens_code" = "308" ] || { [ "$ens_code" -ge 300 ] 2>/dev/null && [ "$ens_code" -lt 400 ] 2>/dev/null; }; then
+  loc="$(location_header "${BASE}/en/" || true)"
+  # Accept an absolute or relative Location as long as it resolves to /en (no trailing slash).
+  loc_path="${loc#"${BASE}"}"
+  loc_path="${loc_path%/}"
+  if [ "$loc_path" = "/en" ]; then
+    echo "PASS  ${BASE}/en/  → ${ens_code} → ${loc} (redirects to canonical /en)"
+  else
+    echo "FAIL  ${BASE}/en/  → ${ens_code} but Location='${loc}' (expected to end in /en)" >&2
+    fail=1
+  fi
+elif [ "$ens_code" = "404" ]; then
+  # Assumption A1: if Cloudflare 404s /en/ instead of 308→/en, plan 01-05 must add
+  # a one-line public/_redirects rule ("/en/  /en  308"). Surface a clear diagnostic.
+  echo "FAIL  ${BASE}/en/  → 404 (no redirect to canonical /en)" >&2
+  echo "      DIAGNOSTIC: Cloudflare is not redirecting /en/ → /en." >&2
+  echo "      FIX (plan 01-05): add to repo/public/_redirects:  /en/  /en  308" >&2
+  fail=1
+else
+  echo "FAIL  ${BASE}/en/  → ${ens_code} (expected a 3xx redirect to /en)" >&2
+  fail=1
+fi
+
+if [ "$fail" -ne 0 ]; then
+  echo "" >&2
+  echo "verify-urls: FAILED — the bilingual / no-trailing-slash contract is not satisfied at ${BASE}" >&2
+  exit 1
+fi
+
+echo ""
+echo "verify-urls: PASSED — /, /en (200) and /en/ (redirect → /en) all green at ${BASE}"

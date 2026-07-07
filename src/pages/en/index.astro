@@ -1,0 +1,20 @@
+---
+// EN home → dist/en.html → served at "/en" (NO trailing slash — canonical).
+// EN hero is the AI-generated-then-human-reviewed translation of the PT one-liner
+// (D-06), to be reviewed in the PR preview. Same structure/contact links as PT.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout locale="en">
+  <main>
+    <h1>Michel Moreira</h1>
+    <p>Senior Software Architect</p>
+    <p>20+ years building software — architecture, low-code, and DevOps.</p>
+
+    <ul>
+      <li><a href="https://github.com/drungrin" rel="me">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/drungrin" rel="me">LinkedIn</a></li>
+      <li><a href="mailto:drungrin@gmail.com">drungrin@gmail.com</a></li>
+    </ul>
+  </main>
+</BaseLayout>

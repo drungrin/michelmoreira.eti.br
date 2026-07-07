@@ -1,0 +1,48 @@
+---
+import '../styles/global.css';
+import { localeUrl, type Locale } from '../lib/url';
+// HTML_LANG is the single pt → 'pt-BR' (en → 'en') mapping; Phase 5 hreflang reuses it.
+import { HTML_LANG, LOCALE_NAME, ui } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const lang = HTML_LANG[locale];
+const title = ui[locale].title;
+// Indexable from day one (D-05): this shell emits no robots-exclusion meta.
+---
+
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+
+    <!-- Language switcher (D-04): plain "Português / English"; the current locale
+         is inert text, the other is a localeUrl link proving the / ⇄ /en pairing. -->
+    <nav aria-label={locale === 'pt' ? 'Idioma' : 'Language'}>
+      {
+        locale === 'pt' ? (
+          <span aria-current="true">{LOCALE_NAME.pt}</span>
+        ) : (
+          <a href={localeUrl('pt')}>{LOCALE_NAME.pt}</a>
+        )
+      }
+      {' / '}
+      {
+        locale === 'en' ? (
+          <span aria-current="true">{LOCALE_NAME.en}</span>
+        ) : (
+          <a href={localeUrl('en')}>{LOCALE_NAME.en}</a>
+        )
+      }
+    </nav>
+  </body>
+</html>
