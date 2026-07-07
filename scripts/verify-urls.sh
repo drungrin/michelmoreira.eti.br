@@ -1,19 +1,18 @@
 #!/usr/bin/env bash
 #
-# verify-urls.sh — walking-skeleton happy-path gate (D-15).
+# verify-urls.sh — live check of the site's URL contract.
 #
 # Asserts the bilingual + no-trailing-slash URL contract against a live base URL
 # (a Cloudflare *.pages.dev preview or the production https://michelmoreira.eti.br).
 #
-# Canonical decision (Pitfall A): `/en` (NO trailing slash) is canonical.
+# URL contract: `/en` (NO trailing slash) is the canonical EN home.
 #   - `/`     → 200 (PT home, default locale, unprefixed)
 #   - `/en`   → 200 (EN home, canonical no-trailing-slash)
 #   - `/en/`  → a 3xx redirect whose Location resolves to `/en` (alias only)
 #
 # Redirects are OBSERVED, not followed (curl does not follow location redirects),
-# so the raw status of each path is asserted directly. Created BEFORE deployment: it
-# is the failing end-to-end test that turns green only once plan 01-05 deploys to
-# *.pages.dev. It is reusable against both preview and production URLs.
+# so the raw status of each path is asserted directly. The script is reusable
+# against both preview and production URLs.
 #
 # Usage: scripts/verify-urls.sh https://<hash>.pages.dev
 #        scripts/verify-urls.sh https://michelmoreira.eti.br
@@ -76,11 +75,12 @@ if [ "$ens_code" = "308" ] || { [ "$ens_code" -ge 300 ] 2>/dev/null && [ "$ens_c
     fail=1
   fi
 elif [ "$ens_code" = "404" ]; then
-  # Assumption A1: if Cloudflare 404s /en/ instead of 308→/en, plan 01-05 must add
-  # a one-line public/_redirects rule ("/en/  /en  308"). Surface a clear diagnostic.
+  # Cloudflare Pages normally serves the trailing-slash alias as a 308 redirect
+  # to the canonical extensionless path. If it 404s instead, an explicit
+  # one-line public/_redirects rule ("/en/  /en  308") restores the contract.
   echo "FAIL  ${BASE}/en/  → 404 (no redirect to canonical /en)" >&2
   echo "      DIAGNOSTIC: Cloudflare is not redirecting /en/ → /en." >&2
-  echo "      FIX (plan 01-05): add to repo/public/_redirects:  /en/  /en  308" >&2
+  echo "      FIX: add to public/_redirects:  /en/  /en  308" >&2
   fail=1
 else
   echo "FAIL  ${BASE}/en/  → ${ens_code} (expected a 3xx redirect to /en)" >&2
