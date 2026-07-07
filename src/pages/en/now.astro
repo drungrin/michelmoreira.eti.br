@@ -1,0 +1,30 @@
+---
+// EN /en/now, built as dist/en/now.html and served at "/en/now". Human-
+// reviewed translation of the PT page, checked in the PR preview before
+// merge. The counterpart page for this one is /now (pagePairUrl, not the
+// locale home).
+import { getEntry, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Prose from "../../components/Prose.astro";
+import { pagePairUrl } from "../../lib/pagePairs";
+import { ui } from "../../i18n/ui";
+import { formatDate } from "../../lib/formatDate";
+
+const entry = await getEntry("now", "en");
+if (!entry) throw new Error('Missing content entry: collection "now", id "en"');
+const { Content } = await render(entry);
+---
+
+<BaseLayout locale="en" counterpartPath={pagePairUrl("now", "pt")}>
+  <section class="mt-12">
+    <h1 class="text-4xl leading-[1.1] font-semibold tracking-tight sm:text-5xl">
+      Now
+    </h1>
+    <p class="text-text-muted mt-2 text-sm">
+      {`${ui.en.nowUpdatedLabel} ${formatDate(entry.data.updatedDate, "en")}`}
+    </p>
+    <Prose>
+      <Content />
+    </Prose>
+  </section>
+</BaseLayout>

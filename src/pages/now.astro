@@ -1,0 +1,31 @@
+---
+// PT /now, built as dist/now.html and served at "/now". Nownownow.com-style
+// dated snapshot of current focus (D-15): a localized "Atualizado em {date}"
+// line sourced from frontmatter, then 3-5 blocks rendered via Prose. The
+// counterpart page for this one is /en/now (pagePairUrl, not the locale
+// home).
+import { getEntry, render } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Prose from "../components/Prose.astro";
+import { pagePairUrl } from "../lib/pagePairs";
+import { ui } from "../i18n/ui";
+import { formatDate } from "../lib/formatDate";
+
+const entry = await getEntry("now", "pt");
+if (!entry) throw new Error('Missing content entry: collection "now", id "pt"');
+const { Content } = await render(entry);
+---
+
+<BaseLayout locale="pt" counterpartPath={pagePairUrl("now", "en")}>
+  <section class="mt-12">
+    <h1 class="text-4xl leading-[1.1] font-semibold tracking-tight sm:text-5xl">
+      Now
+    </h1>
+    <p class="text-text-muted mt-2 text-sm">
+      {`${ui.pt.nowUpdatedLabel} ${formatDate(entry.data.updatedDate, "pt")}`}
+    </p>
+    <Prose>
+      <Content />
+    </Prose>
+  </section>
+</BaseLayout>
