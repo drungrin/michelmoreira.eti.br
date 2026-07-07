@@ -3,26 +3,55 @@
 
 Day to day setup, revised whenever something actually changes (not a static showcase).
 
-## Hardware
+## Workstation
 
-- **To be confirmed with Michel.** No hardware item has been validated yet; nothing was assumed here per rule zero (no invented brand, model, or spec).
+Desktop I built myself.
 
-## Editor and Terminal
+- CPU: Intel Core i7-12700K
+- RAM: 96 GB DDR5
+- GPU: NVIDIA GeForce RTX 5060 Ti
+- Case: Lian Li Vision Chroma
+- Monitor: Alienware AW3425DW (ultrawide)
+- Keyboard: Corsair K70 Max
+- Mouse: Corsair Scimitar Elite Wireless SE
+- Mousepad: Corsair MM700
+- Headset: JBL Quantum 810
+- Webcam: Logitech Brio 4K
+- Speakers: Logitech G560
+- Microphone: Blue Yeti Nano
+- Phone: iPhone 15 Pro
 
-- **VS Code inside the devcontainer**: extensions pinned in `devcontainer.json` (Astro, Tailwind CSS IntelliSense, Prettier, ESLint, GitLens), so the environment is reproducible on any machine that boots the container.
-- **Claude Code**: runs contained inside the devcontainer (`sysbox-runc` plus Docker-in-Docker), used on this project for the whole GSD planning and execution flow.
-- **Git and the GitHub CLI**: PRs are required on `main`, with an automatic Cloudflare Pages preview on every branch.
+## Notebook
 
-## Dev Stack
+Avell Storm 460 for travel: Intel Core i7-14650HX, 32 GB DDR5, NVIDIA RTX 4060.
 
-- **Astro 7**: the framework chosen for this site, fully static output, native i18n instead of a client-side framework.
-- **Tailwind CSS v4** (`@tailwindcss/vite`): semantic tokens defined in `@theme`, no `tailwind.config.js` file.
-- **Node.js 24**: build and dev runtime, pinned in `.nvmrc` to match the Cloudflare build.
-- **Java, Python, C#, .NET, TypeScript**: languages used across a career in systems architecture and low-code platforms.
-- **AWS (Lambda, ECS, Step Functions, Amazon Bedrock)**: current production stack for GenAI-driven technical documentation automation, with RAG via `pgvector` on RDS PostgreSQL.
+## Homelab
 
-## Services and Apps
+Dell PowerEdge T130 server running Unraid, with an Intel Xeon E3-1240 v5, 48 GB DDR4 ECC, four 4 TB drives, and two 512 GB NVMe drives as cache.
 
-- **Cloudflare Pages**: static hosting with automatic deploy on every push to `main` and a preview per PR.
-- **GitHub**: code hosting and CI/CD through the native git integration.
-- **Other daily apps**: to be confirmed with Michel before publishing (nothing beyond what already runs on this project was assumed).
+Remote access is self-managed: a WireGuard VPN plus an nginx proxy manager running on an Oracle Cloud (OCI) ARM instance, giving secure access to homelab services from anywhere (a self-hosted equivalent of a zero-trust access layer, managed end to end by me).
+
+Self-hosted services include Bitwarden (password manager) and Nextcloud, with OneDrive Business as an offsite backup target.
+
+## Dev environment
+
+- Editor: VS Code with Claude Code running in the terminal (primary). Cursor occasionally.
+- OS: Windows 11 with WSL.
+- Terminal: Windows Terminal plus WSL, with oh-my-zsh.
+- This site: Astro, Tailwind CSS, and Node.
+
+## Daily apps
+
+- Browser: Microsoft Edge.
+- Communication: Microsoft Teams and Outlook.
+- Music: Spotify.
+- Notes: Apple Notes.
+- Calendar: Google Calendar.
+- Password manager: Bitwarden, self-hosted (see Homelab).
+- Backup and sync: Nextcloud plus OneDrive Business.
+
+## Cloud and platforms
+
+Professional work spans AWS, Azure, OCI, and OVH, across multiple projects at once.
+
+Language depends on context: C# on personal projects, Java at the current employer.
