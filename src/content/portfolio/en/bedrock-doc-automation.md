@@ -1,7 +1,7 @@
 ---
 title: "Serverless technical documentation automation with Amazon Bedrock"
 translationKey: "bedrock-doc-automation"
-period: "2018 - 2026"
+period: "2025"
 stack:
   - "AWS Step Functions"
   - "ECS Fargate"
