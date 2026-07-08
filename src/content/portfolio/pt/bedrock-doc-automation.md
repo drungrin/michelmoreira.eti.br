@@ -14,6 +14,13 @@ stack:
   - "DynamoDB"
 order: 2
 summary: "Pipeline serverless de sete estágios que transforma vídeos de treinamento em documentação técnica, com três camadas contra alucinação decidindo onde a IA pode divergir e onde não pode."
+result: "Três camadas contra alucinação transformam horas de vídeo em manuais."
+stackHighlights:
+  - "AWS Step Functions"
+  - "Amazon Bedrock"
+  - "RAG"
+  - "pgvector"
+  - "ECS Fargate"
 ---
 
 ## Problema

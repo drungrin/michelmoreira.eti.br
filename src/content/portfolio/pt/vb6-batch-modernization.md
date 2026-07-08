@@ -16,6 +16,13 @@ stack:
   - "Azure DevOps"
 order: 1
 summary: "Arquitetura, esqueleto e método para destravar uma reescrita parada havia anos: contrato versionado, testes de caracterização contra o binário original e um trilho incremental para o time executar."
+result: "Um big-bang inviável virou um trilho incremental seguro."
+stackHighlights:
+  - "Java 25"
+  - "Spring Batch"
+  - "Testcontainers"
+  - "MCP"
+  - "Azure DevOps"
 ---
 
 ## Problema
