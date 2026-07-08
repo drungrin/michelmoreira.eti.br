@@ -93,7 +93,7 @@ education:
     year: "2020 - 2025"
 ---
 
-Arquiteto de software há mais de 20 anos: comecei migrando um sistema de ponto de venda de Clipper para Delphi em 2002, na Total Soluções, passei por sistemas de governo em IBM WebSphere ND atendendo toda a população do estado de Rondônia (Softwell Solutions, 2007 a 2012), por virtualização, containers e IoT industrial como fundador da Maker Planet desde 2009, e hoje uso IA em produção na Techne para destravar o tipo de projeto que ficava anos na gaveta.
+Mais de 20 anos construindo software: comecei migrando um sistema de ponto de venda de Clipper para Delphi em 2002, na Total Soluções, passei por sistemas de governo em IBM WebSphere ND atendendo toda a população do estado de Rondônia (Softwell Solutions, 2007 a 2012), por virtualização, containers e IoT industrial como fundador da Maker Planet desde 2009, e hoje uso IA em produção na Techne para destravar o tipo de projeto que ficava anos na gaveta.
 
 O caso mais recente: modernização de processos batch legados em VB6 para Spring Batch (Java 25, Spring Boot 4) expostos via REST, mantendo paridade 1:1 com o sistema original. O volume de processos inviabilizava a reescrita havia anos; o que destravou foi estruturar o trabalho para agentes de IA, com contrato arquitetural versionado no repositório, acesso ao banco real via MCP e testes de caracterização que executam o binário VB original via SSH para gerar os gabaritos que o Java precisa reproduzir. Antes disso, desenhei uma arquitetura serverless e orientada a eventos para automação de documentação técnica na Techne: AWS Step Functions orquestrando Amazon Bedrock (Claude Sonnet), com RAG sobre pgvector no RDS PostgreSQL, reduzindo um processamento que levava dias para minutos.
 
