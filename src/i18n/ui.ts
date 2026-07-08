@@ -51,7 +51,7 @@ export const ui: Record<
   pt: {
     title: "Michel Moreira · Senior Software Architect",
     metaDescription:
-      "Michel Moreira, mais de 20 anos construindo software. Currículo, portfolio de arquitetura e a trajetória de Clipper e Delphi a IA em produção na AWS.",
+      "Michel Moreira, Senior Software Architect. Modernização de sistemas legados com engenharia de LLM e GenAI em produção na AWS. Currículo e portfolio de 20+ anos de arquitetura.",
     themeLabelLight: "Mudar tema, atual: claro",
     themeLabelDark: "Mudar tema, atual: escuro",
     themeLabelSystem: "Mudar tema, atual: sistema",
@@ -73,7 +73,7 @@ export const ui: Record<
   en: {
     title: "Michel Moreira · Senior Software Architect",
     metaDescription:
-      "Michel Moreira, more than 20 years building software. Resume, architecture portfolio, and a path from Clipper and Delphi to AI in production on AWS.",
+      "Michel Moreira, Senior Software Architect. Legacy system modernization with LLM engineering and GenAI in production on AWS. Resume and 20+ year architecture portfolio.",
     themeLabelLight: "Change theme, current: light",
     themeLabelDark: "Change theme, current: dark",
     themeLabelSystem: "Change theme, current: system",
