@@ -34,7 +34,12 @@ const counterpartPath = portfolioCounterpartUrl(
 );
 ---
 
-<BaseLayout locale="pt" counterpartPath={counterpartPath}>
+<BaseLayout
+  locale="pt"
+  counterpartPath={counterpartPath}
+  pageTitle={`${entry.data.title} · Michel Moreira`}
+  description={entry.data.summary}
+>
   <section class="mt-12">
     <h1 class="text-4xl leading-[1.1] font-semibold tracking-tight sm:text-5xl">
       {entry.data.title}

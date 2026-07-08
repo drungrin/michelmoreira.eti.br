@@ -14,7 +14,12 @@ if (!entry)
 const { Content } = await render(entry);
 ---
 
-<BaseLayout locale="pt" counterpartPath={pagePairUrl("uses", "en")}>
+<BaseLayout
+  locale="pt"
+  counterpartPath={pagePairUrl("uses", "en")}
+  pageTitle="Uses · Michel Moreira"
+  description="O setup de Michel Moreira: estação de trabalho, notebook, homelab e as ferramentas do dia a dia."
+>
   <section class="mt-12">
     <h1 class="text-4xl leading-[1.1] font-semibold tracking-tight sm:text-5xl">
       Uses

@@ -14,7 +14,12 @@ const cases = (await getCollection("portfolioPt")).sort(
 );
 ---
 
-<BaseLayout locale="pt" counterpartPath={pagePairUrl("portfolio", "en")}>
+<BaseLayout
+  locale="pt"
+  counterpartPath={pagePairUrl("portfolio", "en")}
+  pageTitle="Portfolio · Michel Moreira"
+  description="Cases de arquitetura de Michel Moreira: modernização de batch legado em VB6 com IA e automação serverless com Amazon Bedrock."
+>
   <section class="mt-12">
     <h1 class="text-4xl leading-[1.1] font-semibold tracking-tight sm:text-5xl">
       Portfolio
