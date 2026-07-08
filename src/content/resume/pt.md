@@ -1,5 +1,5 @@
 ---
-name: "Michel Moreira"
+name: "Luis Michel Silva Moreira"
 title: "Senior Software Architect"
 updatedDate: "2026-07-07"
 experience:
@@ -10,6 +10,8 @@ experience:
       - "Atuo como arquiteto transversal a todos os produtos da Techne, sem pertencer a uma equipe fixa, trabalhando com todas elas."
       - "Modernizo processos batch legados em VB6 para Spring Batch (Java 25, Spring Boot 4) expostos via REST, mantendo paridade 1:1 com o sistema original; o volume de processos inviabilizava a reescrita havia anos."
       - "Estruturei o trabalho para agentes de IA: contrato arquitetural versionado no repositório, acesso ao banco real via MCP e testes de caracterização que executam o binário VB original via SSH para gerar os gabaritos que o Java precisa reproduzir."
+      - "Desenhei uma arquitetura serverless e orientada a eventos para automação de documentação técnica: AWS Step Functions orquestrando Amazon Bedrock (Claude Sonnet), com RAG sobre pgvector no RDS PostgreSQL, reduzindo um processamento que levava dias para minutos."
+      - "No último ano, mentorei Tech Leads dos produtos da empresa na adoção de IA; os resultados foram apresentados no \"checkpoint\", evento interno mensal da Techne."
   - role: "Arquiteto Líder da Plataforma Cronapp"
     company: "Techne"
     period: "2018 - 2026"
@@ -19,9 +21,7 @@ experience:
       - "Geri diretamente as equipes de desenvolvimento, com orientação técnica direta e mentoria de Tech Leads."
       - "Liderei iniciativas de segurança nas várias camadas da arquitetura, com pesquisa contínua de vulnerabilidades baseada no OWASP Top 10, do relatório à correção no código."
       - "Implementei gestão de configuração e o método Agile/Scrum, formalizando papéis de equipe, controle de qualidade e padronização da documentação de projeto."
-      - "Desenhei uma arquitetura serverless e orientada a eventos para automação de documentação técnica: AWS Step Functions orquestrando Amazon Bedrock (Claude Sonnet), com RAG sobre pgvector no RDS PostgreSQL, reduzindo um processamento que levava dias para menos de uma hora."
-      - "No último ano, mentorei Tech Leads dos produtos da empresa na adoção de IA; os resultados foram apresentados no \"checkpoint\", evento interno mensal da Techne."
-  - role: "CTO"
+  - role: "Fundador"
     company: "Maker Planet"
     period: "2009 - atual"
     achievements:
@@ -90,11 +90,11 @@ skills:
 education:
   - degree: "Ciência da Computação"
     institution: "Estácio"
-    year: "2020 - em andamento"
+    year: "2020 - 2025"
 ---
 
-Arquiteto de software há mais de 20 anos: comecei migrando um sistema de ponto de venda de Clipper para Delphi em 2002, na Total Soluções, passei por sistemas de governo em IBM WebSphere ND atendendo toda a população do estado de Rondônia (Softwell Solutions, 2007 a 2012), por virtualização, containers e IoT industrial como CTO da Maker Planet desde 2009, e hoje uso IA em produção na Techne para destravar o tipo de projeto que ficava anos na gaveta.
+Arquiteto de software há mais de 20 anos: comecei migrando um sistema de ponto de venda de Clipper para Delphi em 2002, na Total Soluções, passei por sistemas de governo em IBM WebSphere ND atendendo toda a população do estado de Rondônia (Softwell Solutions, 2007 a 2012), por virtualização, containers e IoT industrial como fundador da Maker Planet desde 2009, e hoje uso IA em produção na Techne para destravar o tipo de projeto que ficava anos na gaveta.
 
-O caso mais recente: modernização de processos batch legados em VB6 para Spring Batch (Java 25, Spring Boot 4) expostos via REST, mantendo paridade 1:1 com o sistema original. O volume de processos inviabilizava a reescrita havia anos; o que destravou foi estruturar o trabalho para agentes de IA, com contrato arquitetural versionado no repositório, acesso ao banco real via MCP e testes de caracterização que executam o binário VB original via SSH para gerar os gabaritos que o Java precisa reproduzir. Antes disso, desenhei uma arquitetura serverless e orientada a eventos para automação de documentação técnica na Techne: AWS Step Functions orquestrando Amazon Bedrock (Claude Sonnet), com RAG sobre pgvector no RDS PostgreSQL, reduzindo um processamento que levava dias para menos de uma hora.
+O caso mais recente: modernização de processos batch legados em VB6 para Spring Batch (Java 25, Spring Boot 4) expostos via REST, mantendo paridade 1:1 com o sistema original. O volume de processos inviabilizava a reescrita havia anos; o que destravou foi estruturar o trabalho para agentes de IA, com contrato arquitetural versionado no repositório, acesso ao banco real via MCP e testes de caracterização que executam o binário VB original via SSH para gerar os gabaritos que o Java precisa reproduzir. Antes disso, desenhei uma arquitetura serverless e orientada a eventos para automação de documentação técnica na Techne: AWS Step Functions orquestrando Amazon Bedrock (Claude Sonnet), com RAG sobre pgvector no RDS PostgreSQL, reduzindo um processamento que levava dias para minutos.
 
 De 2018 até o início de 2026 fui arquiteto líder da plataforma low-code Cronapp na Techne; este ano o papel mudou de escopo, e passei a atuar como arquiteto transversal a todos os produtos da empresa, sem pertencer a uma equipe mas trabalhando com todas. A parte difícil nunca foi a tecnologia: na migração de um time inteiro de SVN para Git, anos atrás, o obstáculo não foi o Git, foi a cultura, fazer o time adotar e usar a ferramenta de fato. O mesmo vale para IA hoje: a tecnologia resolve menos do que a adoção.
