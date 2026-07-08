@@ -15,7 +15,12 @@ if (!entry) throw new Error('Missing content entry: collection "now", id "en"');
 const { Content } = await render(entry);
 ---
 
-<BaseLayout locale="en" counterpartPath={pagePairUrl("now", "pt")}>
+<BaseLayout
+  locale="en"
+  counterpartPath={pagePairUrl("now", "pt")}
+  pageTitle="Now · Michel Moreira"
+  description="What Michel Moreira is working on now."
+>
   <section class="mt-12">
     <h1 class="text-4xl leading-[1.1] font-semibold tracking-tight sm:text-5xl">
       Now

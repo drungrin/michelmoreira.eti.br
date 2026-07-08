@@ -4,7 +4,7 @@ import { Font } from "astro:assets";
 import type { Locale } from "../lib/url";
 // HTML_LANG is the single locale-to-lang mapping (pt -> "pt-BR", en -> "en");
 // future hreflang emission reuses it.
-import { HTML_LANG, ui } from "../i18n/ui";
+import { BRAND, HTML_LANG, ui } from "../i18n/ui";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
@@ -14,11 +14,28 @@ interface Props {
    * LanguageSwitcher (see pagePairUrl in lib/pagePairs.ts). Optional so pages
    * without a pairing (e.g. home) still render safely. */
   counterpartPath?: string;
+  /** Per-page <title>; falls back to the site title when omitted (home). */
+  pageTitle?: string;
+  /** Per-page meta/OG description; falls back to the locale site description. */
+  description?: string;
+  /** Per-page OG image path (absolute-from-root); defaults to the site card. */
+  ogImage?: string;
 }
 
-const { locale, counterpartPath } = Astro.props;
+const { locale, counterpartPath, pageTitle, description, ogImage } =
+  Astro.props;
 const lang = HTML_LANG[locale];
-const title = ui[locale].title;
+const title = pageTitle ?? ui[locale].title;
+const metaDescription = description ?? ui[locale].metaDescription;
+// Absolute URLs for canonical + social cards (Astro.site is set in config).
+// build.format: "file" makes pathname carry ".html" (e.g. /curriculo.html),
+// but pages are served extensionless (trailingSlash: "never"). Strip it so the
+// canonical matches the served URL: /index.html -> /, /curriculo.html -> /curriculo.
+const cleanPath =
+  Astro.url.pathname.replace(/index\.html$/, "").replace(/\.html$/, "") || "/";
+const canonicalURL = new URL(cleanPath, Astro.site);
+const ogImageURL = new URL(ogImage ?? "/og.png", Astro.site);
+const ogLocale = locale === "pt" ? "pt_BR" : "en_US";
 // Indexable from day one: this shell intentionally emits no robots-exclusion meta.
 ---
 
@@ -39,8 +56,30 @@ const title = ui[locale].title;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <meta name="description" content={metaDescription} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph (LinkedIn, Facebook, Slack, ...) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={BRAND} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={ogLocale} />
+
+    <!-- Twitter / X card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={metaDescription} />
+    <meta name="twitter:image" content={ogImageURL} />
+
     <Font cssVariable="--font-inter" preload />
   </head>
   <body class="bg-surface text-text font-sans text-lg leading-[1.6]">

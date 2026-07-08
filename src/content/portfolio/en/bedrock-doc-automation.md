@@ -10,7 +10,7 @@ stack:
   - "pgvector"
   - "RDS PostgreSQL"
 order: 2
-summary: "Event-driven serverless architecture that cut a processing job from days down to under an hour."
+summary: "Event-driven serverless architecture that cut a processing job from days down to minutes."
 ---
 
 ## Problem
@@ -27,4 +27,4 @@ AWS Step Functions, Amazon Bedrock (Claude Sonnet), RAG, pgvector, RDS PostgreSQ
 
 ## Result
 
-The processing job went from days down to under an hour.
+The automation removed over 80% of the manual documentation effort. It processed continuous 9-hour sessions with zero hallucinations, and delivery time dropped from days to minutes.

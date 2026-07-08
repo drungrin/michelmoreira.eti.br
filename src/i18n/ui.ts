@@ -28,6 +28,7 @@ export const ui: Record<
   Locale,
   {
     title: string;
+    metaDescription: string;
     themeLabelLight: string;
     themeLabelDark: string;
     themeLabelSystem: string;
@@ -49,6 +50,8 @@ export const ui: Record<
 > = {
   pt: {
     title: "Michel Moreira · Senior Software Architect",
+    metaDescription:
+      "Michel Moreira, arquiteto de software com mais de 20 anos. Currículo, portfolio de arquitetura e a trajetória de Clipper e Delphi a IA em produção na AWS.",
     themeLabelLight: "Mudar tema, atual: claro",
     themeLabelDark: "Mudar tema, atual: escuro",
     themeLabelSystem: "Mudar tema, atual: sistema",
@@ -63,12 +66,14 @@ export const ui: Record<
     ctaPortfolioTitle: "Portfolio",
     ctaPortfolioDesc: "Cases de arquitetura ao longo de 20 anos de carreira.",
     ctaContactTitle: "Contato",
-    ctaContactDesc: "Envie um e-mail direto para drungrin@gmail.com.",
+    ctaContactDesc: "Envie um e-mail direto para michel@michelmoreira.eti.br.",
     pdfDownloadLabel: "Baixar currículo em PDF",
     nowUpdatedLabel: "Atualizado em",
   },
   en: {
     title: "Michel Moreira · Senior Software Architect",
+    metaDescription:
+      "Michel Moreira, software architect with more than 20 years. Resume, architecture portfolio, and a path from Clipper and Delphi to AI in production on AWS.",
     themeLabelLight: "Change theme, current: light",
     themeLabelDark: "Change theme, current: dark",
     themeLabelSystem: "Change theme, current: system",
@@ -83,7 +88,7 @@ export const ui: Record<
     ctaPortfolioTitle: "Portfolio",
     ctaPortfolioDesc: "Architecture cases across a 20 year career.",
     ctaContactTitle: "Contact",
-    ctaContactDesc: "Send an email directly to drungrin@gmail.com.",
+    ctaContactDesc: "Send an email directly to michel@michelmoreira.eti.br.",
     pdfDownloadLabel: "Download resume as PDF",
     nowUpdatedLabel: "Updated",
   },

@@ -23,7 +23,11 @@ Desktop montado por mim.
 
 ## Notebook
 
-Avell Storm 460 para viagem: Intel Core i7-14650HX, 32 GB DDR5, NVIDIA RTX 4060.
+Avell Storm 460 para viagem.
+
+- Processador: Intel Core i7-14650HX
+- Memória: 32 GB DDR5
+- Placa de vídeo: NVIDIA RTX 4060
 
 ## Homelab
 
@@ -45,8 +49,8 @@ Serviços autohospedados incluem Bitwarden (gerenciador de senhas) e Nextcloud, 
 - Navegador: Microsoft Edge.
 - Comunicação: Microsoft Teams e Outlook.
 - Música: Spotify.
-- Notas: Apple Notes.
-- Agenda: Google Calendar.
+- Notas: Motion.
+- Agenda: Motion.
 - Gerenciador de senhas: Bitwarden, autohospedado (ver Homelab).
 - Backup e sincronização: Nextcloud mais OneDrive Business.
 

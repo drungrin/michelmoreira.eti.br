@@ -1,5 +1,5 @@
 ---
-name: "Michel Moreira"
+name: "Luis Michel Silva Moreira"
 title: "Senior Software Architect"
 updatedDate: "2026-07-07"
 experience:
@@ -10,6 +10,8 @@ experience:
       - "Act as a transversal architect across all of Techne's products, not tied to one fixed team but working with all of them."
       - "Modernizing legacy VB6 batch processes into Spring Batch (Java 25, Spring Boot 4) exposed via REST, keeping 1:1 parity with the original system; the process volume had made a rewrite unfeasible for years."
       - "Structured the work for AI agents: a versioned architectural contract in the repository, access to the real database via MCP, and characterization tests that run the original VB binary via SSH to generate the fixtures the Java code must reproduce."
+      - "Designed a serverless, event-driven architecture for technical documentation automation: AWS Step Functions orchestrating Amazon Bedrock (Claude Sonnet), with RAG over pgvector on RDS PostgreSQL, cutting a processing job that took days down to minutes."
+      - 'In the last year, mentored Tech Leads across the company''s products on AI adoption; the results were presented at "checkpoint", Techne''s monthly internal event.'
   - role: "Lead Architect of the Cronapp Platform"
     company: "Techne"
     period: "2018 - 2026"
@@ -19,9 +21,7 @@ experience:
       - "Directly managed the development teams, with hands-on technical guidance and Tech Lead mentoring."
       - "Led security initiatives across multiple architecture layers, with continuous vulnerability research based on the OWASP Top 10, from vulnerability report to code fix."
       - "Implemented configuration management and the Agile/Scrum method, formalizing team roles, quality control, and standardized project documentation."
-      - "Designed a serverless, event-driven architecture for technical documentation automation: AWS Step Functions orchestrating Amazon Bedrock (Claude Sonnet), with RAG over pgvector on RDS PostgreSQL, cutting a processing job that took days down to under an hour."
-      - "In the last year, mentored Tech Leads across the company's products on AI adoption; the results were presented at \"checkpoint\", Techne's monthly internal event."
-  - role: "CTO"
+  - role: "Founder"
     company: "Maker Planet"
     period: "2009 - present"
     achievements:
@@ -44,7 +44,7 @@ experience:
     company: "Copam Informática"
     period: "2005 - 2007"
     achievements:
-      - "Developed the \"padrão\", the development methodology that defined the architecture and build process for the company's new modern products: Orçamento, Patrimônio, and Plano Plurianual."
+      - 'Developed the "padrão", the development methodology that defined the architecture and build process for the company''s new modern products: Orçamento, Patrimônio, and Plano Plurianual.'
       - "Deployed and maintained those products for government sector clients, following the standard I defined."
   - role: "Software Developer"
     company: "Total Soluções"
@@ -53,48 +53,60 @@ experience:
       - "Developed, implemented, and maintained off-the-shelf software for retail and wholesale businesses."
       - "Migrated the point-of-sale system from Clipper to Delphi."
 skills:
-  - "Java"
-  - "Python"
-  - "C#"
-  - "Delphi"
-  - "PHP"
-  - "C++"
-  - ".NET Framework"
-  - "Xamarin"
-  - "Flutter"
-  - "TypeScript"
-  - "JavaScript"
-  - "Azure SDK"
-  - "Amazon SDK"
-  - "Serverless functions"
-  - "Windows API"
-  - "Apache HTTP Server"
-  - "Apache Tomcat"
-  - "IBM WebSphere ND"
-  - "HTTP clustering"
-  - "Oracle"
-  - "Microsoft SQL Server"
-  - "PostgreSQL"
-  - "MySQL"
-  - "Firebird"
-  - "Server architecture"
-  - "Windows networking"
-  - "Linux"
-  - "XML"
-  - "HTML"
-  - "Apache JMeter"
-  - "IoT"
-  - "BLE and indoor location"
-  - "Embedded systems"
-  - "English CEFR B2 (TrueNorth 7.2)"
+  core:
+    - label: "Languages"
+      items:
+        - "Java"
+        - "Python"
+        - "C#"
+        - "TypeScript"
+    - label: "Cloud & infra"
+      items:
+        - "AWS (Lambda, ECS, SAM, Step Functions, Bedrock)"
+        - "Azure"
+        - "OCI"
+        - "Docker"
+        - "Kubernetes"
+        - "Linux"
+    - label: "Data"
+      items:
+        - "PostgreSQL"
+        - "SQL Server"
+        - "Oracle"
+        - "pgvector / RAG"
+    - label: "Architecture & practice"
+      items:
+        - "Serverless, event-driven architecture"
+        - "Low-code"
+        - "Security (OWASP Top 10)"
+        - "CI/CD"
+        - "QA and testing"
+        - "Technical mentoring"
+  historical:
+    - "Delphi"
+    - "C++"
+    - "PHP"
+    - "VB6"
+    - "Clipper"
+    - "Xamarin"
+    - "Flutter"
+    - "IBM WebSphere ND"
+    - "Apache Tomcat"
+    - "Apache JMeter"
+    - "IoT and indoor location (BLE)"
+    - "Embedded systems"
+    - "Firebird"
+    - "MySQL"
+  languages:
+    - "English CEFR B2 (TrueNorth 7.2)"
 education:
   - degree: "Computer Science"
     institution: "Estácio"
-    year: "2020 - in progress"
+    year: "2020 - 2025"
 ---
 
-Software architect for more than 20 years: I started migrating a point-of-sale system from Clipper to Delphi in 2002, at Total Soluções, moved through government systems on IBM WebSphere ND serving the entire population of Rondônia State (Softwell Solutions, 2007 to 2012), through virtualization, containers, and industrial IoT as CTO of Maker Planet since 2009, and today I use AI in production at Techne to unlock the kind of project that used to sit in a drawer for years.
+More than 20 years building software: I started migrating a point-of-sale system from Clipper to Delphi in 2002, at Total Soluções, moved through government systems on IBM WebSphere ND serving the entire population of Rondônia State (Softwell Solutions, 2007 to 2012), through virtualization, containers, and industrial IoT as founder of Maker Planet since 2009, and today I use AI in production at Techne to unlock the kind of project that used to sit in a drawer for years.
 
-The most recent case: modernizing legacy VB6 batch processes into Spring Batch (Java 25, Spring Boot 4) exposed via REST, keeping 1:1 parity with the original system. The process volume had made a rewrite unfeasible for years; what unlocked it was structuring the work for AI agents, with a versioned architectural contract in the repository, access to the real database via MCP, and characterization tests that run the original VB binary via SSH to generate the fixtures the Java code must reproduce. Before that, I designed a serverless, event-driven architecture for technical documentation automation at Techne: AWS Step Functions orchestrating Amazon Bedrock (Claude Sonnet), with RAG over pgvector on RDS PostgreSQL, cutting a processing job that took days down to under an hour.
+The most recent case: modernizing legacy VB6 batch processes into Spring Batch (Java 25, Spring Boot 4) exposed via REST, keeping 1:1 parity with the original system. The process volume had made a rewrite unfeasible for years; what unlocked it was structuring the work for AI agents, with a versioned architectural contract in the repository, access to the real database via MCP, and characterization tests that run the original VB binary via SSH to generate the fixtures the Java code must reproduce. Before that, I designed a serverless, event-driven architecture for technical documentation automation at Techne: AWS Step Functions orchestrating Amazon Bedrock (Claude Sonnet), with RAG over pgvector on RDS PostgreSQL, cutting a processing job that took days down to minutes.
 
 From 2018 until early 2026 I was the lead architect of the Cronapp low-code platform at Techne; this year the role's scope changed, and I moved to acting as a transversal architect across all of the company's products, not tied to one team but working with all of them. The hard part was never the technology: migrating an entire team from SVN to Git, years ago, the obstacle was not Git, it was culture, getting the team to actually adopt and use the tool. The same holds for AI today: the technology solves less than the adoption does.
