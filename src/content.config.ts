@@ -71,6 +71,8 @@ const caseSchema = z.object({
   stack: z.array(z.string()),
   order: z.number(),
   summary: z.string(),
+  result: z.string(),
+  stackHighlights: z.array(z.string()),
 });
 
 const portfolioPt = defineCollection({
