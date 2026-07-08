@@ -1,12 +1,18 @@
 ---
 // PT home (root, default locale), built as dist/index.html and served at "/".
-// Content renders inside the layout's main element; the CTA list below the
-// hero links to the resume and portfolio pages (pagePairUrl) plus a direct
-// mailto contact (D-11/D-16, no /contato page). The counterpart page for
-// this one is /en.
+// Opens with the hero and flows straight into a typographic Selected Work list
+// rendered from the portfolioPt content collection (result line before stack),
+// closing on a single accent CTA. No passive CTA menu, no cards: hierarchy from
+// weight, color, and space. The contact links live site-wide in Footer.astro and
+// are deliberately not repeated here (D-03). Counterpart page: /en.
+import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { localeUrl } from "../lib/url";
 import { pagePairUrl } from "../lib/pagePairs";
+import { sortCasesByOrder, formatCaseNumber } from "../lib/caseDisplay";
 import { ui } from "../i18n/ui";
+
+const cases = sortCasesByOrder(await getCollection("portfolioPt"));
 ---
 
 <BaseLayout locale="pt">
@@ -15,54 +21,58 @@ import { ui } from "../i18n/ui";
       Michel Moreira
     </h1>
     <p class="text-text-muted mt-2">Senior Software Architect</p>
-    <h2
-      class="mt-6 text-xl font-semibold tracking-tight text-balance sm:text-2xl"
-    >
-      Transformo modernizações impossíveis em projetos executáveis.
-    </h2>
-    <p class="mt-4">
+    <p class="mt-6 max-w-2xl">
+      Transformo modernizações que pareciam inviáveis em projetos executáveis.
       Modernizo sistemas corporativos legados com engenharia de LLMs e agentes
-      de IA. Projetos grandes demais para reescrever finalmente saem da gaveta.
-      Recentemente migrei processos batch de VB6 para Java e Spring Batch com
-      paridade funcional 1:1, preservando o comportamento do negócio.
+      de IA. Recentemente migrei processos batch de VB6 para Java e Spring Batch
+      com paridade funcional 1:1, preservando o comportamento do negócio.
     </p>
-    <p class="mt-4">
-      São mais de 20 anos executando a mesma tese de alavancagem tecnológica:
-      co-criei plataformas low-code comerciais (Softwell Maker, Cronapp) e
-      projetei sistemas de governo em IBM WebSphere atendendo todo o estado de
-      Rondônia. Hoje uso IA para viabilizar evoluções que antes eram
-      economicamente inviáveis.
+    <p class="mt-4 max-w-2xl">
+      Há mais de vinte anos executo a mesma tese de alavancagem tecnológica:
+      co-criei as plataformas low-code Softwell Maker e Cronapp e projetei
+      sistemas de governo em IBM WebSphere usados em todo o estado de Rondônia.
+      Hoje aplico IA para viabilizar modernizações que antes não se pagavam.
     </p>
   </section>
-  <section class="mt-12">
-    <ul class="flex flex-col gap-8">
-      <li>
-        <a
-          href={pagePairUrl("resume", "pt")}
-          class="text-2xl font-semibold tracking-tight"
-        >
-          {ui.pt.ctaResumeTitle}
-        </a>
-        <p class="text-text-muted mt-2">{ui.pt.ctaResumeDesc}</p>
-      </li>
-      <li>
-        <a
-          href={pagePairUrl("portfolio", "pt")}
-          class="text-2xl font-semibold tracking-tight"
-        >
-          {ui.pt.ctaPortfolioTitle}
-        </a>
-        <p class="text-text-muted mt-2">{ui.pt.ctaPortfolioDesc}</p>
-      </li>
-      <li>
-        <a
-          href="mailto:michel@michelmoreira.eti.br"
-          class="text-2xl font-semibold tracking-tight"
-        >
-          {ui.pt.ctaContactTitle}
-        </a>
-        <p class="text-text-muted mt-2">{ui.pt.ctaContactDesc}</p>
-      </li>
+
+  <section class="mt-16">
+    <h2 class="text-text-muted/70 text-sm tracking-wide uppercase">
+      {ui.pt.selectedWorkLabel}
+    </h2>
+    <ul class="mt-6 flex flex-col">
+      {
+        cases.map((item, index) => (
+          <li class="border-border border-b py-6">
+            <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+              <h3 class="text-lg font-semibold tracking-tight">
+                <span class="text-text-muted/70 font-mono text-sm">
+                  {formatCaseNumber(index)}
+                </span>
+                {item.data.title}
+              </h3>
+              <a
+                href={localeUrl("pt", "portfolio/" + item.id)}
+                class="text-accent"
+              >
+                {ui.pt.readCaseLabel}
+              </a>
+            </div>
+            <p class="text-text-muted mt-2">{item.data.result}</p>
+            <p class="text-text-muted/70 mt-1 font-mono text-xs wrap-break-word">
+              {item.data.stackHighlights.join(", ")}
+            </p>
+          </li>
+        ))
+      }
     </ul>
+  </section>
+
+  <section class="mt-12">
+    <a
+      href={pagePairUrl("portfolio", "pt")}
+      class="text-accent text-2xl font-semibold tracking-tight"
+    >
+      {ui.pt.viewAllCasesLabel}
+    </a>
   </section>
 </BaseLayout>
