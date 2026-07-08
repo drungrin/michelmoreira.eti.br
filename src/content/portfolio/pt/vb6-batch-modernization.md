@@ -20,7 +20,7 @@ summary: "Arquitetura, esqueleto e método para destravar uma reescrita parada h
 
 ## Problema
 
-Processos batch legados em VB6 na Techne, disparados como executáveis .exe por uma interface Java. O volume de processos inviabilizava a reescrita havia anos: grande demais para um big-bang e arriscado demais para tocar sem rede de segurança, porque o comportamento precisa continuar idêntico enquanto o sistema roda em produção. Era o tipo de projeto que ficava anos na gaveta.
+Processos batch legados em VB6 na Techne, disparados como executáveis .exe por uma interface Java. São 97 processos, e esse volume inviabilizava a reescrita havia anos: grande demais para um big-bang e arriscado demais para tocar sem rede de segurança, porque o comportamento precisa continuar idêntico enquanto o sistema roda em produção. Era o tipo de projeto que ficava anos na gaveta.
 
 ## Abordagem
 
@@ -54,6 +54,6 @@ Java 25 LTS, Spring Boot 4 e Spring Batch 6 no núcleo. SQL Server acessado por 
 
 ## Resultado
 
-A arquitetura, o esqueleto e o método de migração estão de pé e validados de ponta a ponta no primeiro processo, com um gate de caracterização que prova a paridade antes de qualquer merge. Foi isso que tirou a reescrita da gaveta: o que era um big-bang inviável virou um trilho incremental, com contrato e rede de segurança, que o time executa processo a processo. Os desenvolvedores já estão sendo alocados para migrar o restante do backlog contra o mesmo contrato e o mesmo gate.
+A arquitetura, o esqueleto e o método de migração estão de pé, validados de ponta a ponta em 1 dos 97 processos do backlog, com um gate de caracterização que prova a paridade antes de qualquer merge. Foi isso que tirou a reescrita da gaveta: o que era um big-bang inviável virou um trilho incremental, com contrato e rede de segurança, que o time executa processo a processo. Os desenvolvedores já estão sendo alocados para migrar o restante do backlog contra o mesmo contrato e o mesmo gate.
 
 Não está terminado, e o ponto é esse: entreguei o caminho, não a migração inteira. O custo do trilho é concreto: cada processo exige capturar o gabarito do binário original num host Windows e manter um SQL Server real no circuito de teste.

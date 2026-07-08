@@ -20,7 +20,7 @@ summary: "Architecture, skeleton, and method to unlock a rewrite stalled for yea
 
 ## Problem
 
-Legacy VB6 batch processes at Techne, launched as .exe executables by a Java interface. The volume of processes had made a rewrite unfeasible for years: too large for a big bang, and too risky to touch without a safety net, because the behavior has to stay identical while the system runs in production. It was the kind of project that sat in a drawer for years.
+Legacy VB6 batch processes at Techne, launched as .exe executables by a Java interface. There are 97 of them, and that volume had made a rewrite unfeasible for years: too large for a big bang, and too risky to touch without a safety net, because the behavior has to stay identical while the system runs in production. It was the kind of project that sat in a drawer for years.
 
 ## Approach
 
@@ -54,6 +54,6 @@ Java 25 LTS, Spring Boot 4, and Spring Batch 6 at the core. SQL Server accessed 
 
 ## Result
 
-The architecture, the skeleton, and the migration method are in place and validated end to end on the first process, with a characterization gate that proves parity before any merge. That is what took the rewrite out of the drawer: what was an unfeasible big bang became an incremental track, with a contract and a safety net, that the team runs one process at a time. Developers are already being allocated to migrate the rest of the backlog against the same contract and the same gate.
+The architecture, the skeleton, and the migration method are in place, validated end to end on 1 of the 97 backlog processes, with a characterization gate that proves parity before any merge. That is what took the rewrite out of the drawer: what was an unfeasible big bang became an incremental track, with a contract and a safety net, that the team runs one process at a time. Developers are already being allocated to migrate the rest of the backlog against the same contract and the same gate.
 
 It is not finished, and that is the point: I delivered the path, not the whole migration. The cost of the track is concrete: each process requires capturing the original binary's golden output on a Windows host and keeping a real SQL Server in the test loop.
