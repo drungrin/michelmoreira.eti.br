@@ -23,7 +23,8 @@ experience:
       - "Implementei gestão de configuração e o método Agile/Scrum, formalizando papéis de equipe, controle de qualidade e padronização da documentação de projeto."
   - role: "Fundador"
     company: "Maker Planet"
-    period: "2009 - atual"
+    period: "desde 2009"
+    note: "Empresa própria, ainda ativa, com atuação pontual em decisões técnicas."
     achievements:
       - "Arquitetei, implementei e sustentei arquiteturas de aplicações em containers com Docker."
       - "Arquitetei e sustentei datacenters de clientes com Hyper-V, VMware ESX e Xen."

@@ -23,7 +23,8 @@ experience:
       - "Implemented configuration management and the Agile/Scrum method, formalizing team roles, quality control, and standardized project documentation."
   - role: "Founder"
     company: "Maker Planet"
-    period: "2009 - present"
+    period: "since 2009"
+    note: "My own company, still active, with occasional involvement in technical decisions."
     achievements:
       - "Architected, implemented, and supported Docker container-based application architectures."
       - "Architected and supported customer datacenters with Hyper-V, VMware ESX, and Xen."

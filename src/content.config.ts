@@ -17,6 +17,9 @@ const resumeSchema = z.object({
       role: z.string(),
       company: z.string(),
       period: z.string(),
+      // Optional scope note rendered muted under the period — used to frame
+      // an own-company entry so it doesn't read as a concurrent full-time job.
+      note: z.string().optional(),
       achievements: z.array(z.string()),
     }),
   ),
