@@ -1,60 +1,81 @@
-name: Regenerate resume PDFs
+name: Résumé PDFs
 
-# Scoped narrowly: only runs when resume content, the resume page templates,
-# the print CSS, or the generator script itself change — not on every push.
-# (Pitfall 5: the trigger paths must cover everything that can change what
-# gets printed, or a stale PDF can silently ship alongside a fresh page.)
+# Runs on every PR to main and reports the 'resume-pdfs' status check. The
+# check only READS the tree: it regenerates the PDFs in the runner and compares
+# them to the committed files. It never commits to, updates, or deploys any
+# branch. Fresh PDFs are produced and committed by the contributor on the
+# (unprotected) feature branch via `npm run resume:pdf`; protected main is
+# updated only through the normal reviewed PR + Cloudflare Pages deploy.
 on:
-  push:
+  pull_request:
     branches: [main]
-    paths:
-      - "src/content/resume/**"
-      - "src/pages/curriculo.astro"
-      - "src/pages/en/resume.astro"
-      - "src/styles/global.css"
-      - "scripts/generate-resume-pdfs.mjs"
 
-# Scoped to this workflow file only — not repo-wide. The default GITHUB_TOKEN
-# (no PAT) is used for the commit-back step below; it does not re-trigger a
-# new Actions run for pushes it makes, so the commit message intentionally
-# carries no CI-skip marker of any kind (Pitfall 1: Cloudflare Pages itself
-# honors that class of marker in a commit message and would skip the very
-# deploy that ships the new PDF).
+# Read-only: the job compares files, it does not write to any branch.
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: resume-pdf-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  pdf:
+  resume-pdfs:
+    name: resume-pdfs
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Only résumé inputs can invalidate the committed PDFs. When none changed
+      # the check passes immediately, so it stays a valid REQUIRED check on
+      # every PR without deadlocking PRs that don't touch the résumé. (A
+      # trigger-level paths: filter would leave the required check unreported —
+      # and therefore permanently pending — on all other PRs.)
+      - name: Detect résumé input changes
+        id: changed
+        run: |
+          if git diff --name-only "origin/${{ github.base_ref }}...HEAD" \
+            | grep -qE '^(src/content/resume/|src/pages/curriculo\.astro|src/pages/en/resume\.astro|src/styles/global\.css|scripts/generate-resume-pdfs\.mjs|scripts/lib/normalize-pdf\.mjs)'; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No résumé inputs changed in this PR — committed PDFs cannot be stale."
+          fi
 
       - uses: actions/setup-node@v4
+        if: steps.changed.outputs.changed == 'true'
         with:
           node-version: "24"
 
-      - run: npm ci
+      - if: steps.changed.outputs.changed == 'true'
+        run: npm ci
 
-      - run: npx playwright install --with-deps chromium
+      - if: steps.changed.outputs.changed == 'true'
+        run: npx playwright install --with-deps chromium
 
-      - run: npm run build
+      - if: steps.changed.outputs.changed == 'true'
+        run: npm run build
 
       - name: Start preview server
+        if: steps.changed.outputs.changed == 'true'
         run: npm run preview -- --port 4321 &
 
       - name: Wait for preview server
+        if: steps.changed.outputs.changed == 'true'
         run: until curl -sf -o /dev/null http://localhost:4321/curriculo; do sleep 1; done
 
-      - run: node scripts/generate-resume-pdfs.mjs
+      - name: Regenerate résumé PDFs
+        if: steps.changed.outputs.changed == 'true'
+        run: node scripts/generate-resume-pdfs.mjs
 
-      - name: Commit and push regenerated PDFs
+      - name: Fail if committed PDFs are stale or missing
+        if: steps.changed.outputs.changed == 'true'
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add public/michel-moreira-cv-pt.pdf public/michel-moreira-cv-en.pdf
-          git diff --cached --quiet || git commit -m "chore: regenerate resume PDFs from updated content"
-          git push
+          git add -- public/michel-moreira-cv-pt.pdf public/michel-moreira-cv-en.pdf
+          if ! git diff --cached --quiet -- public/michel-moreira-cv-pt.pdf public/michel-moreira-cv-en.pdf; then
+            echo "::error::Committed résumé PDFs are stale or missing. Run 'npm run resume:pdf' and commit public/michel-moreira-cv-*.pdf to this branch."
+            git --no-pager diff --cached --stat -- public/michel-moreira-cv-pt.pdf public/michel-moreira-cv-en.pdf
+            exit 1
+          fi
+          echo "Committed résumé PDFs are up to date."
