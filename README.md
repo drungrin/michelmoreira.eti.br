@@ -33,24 +33,6 @@ Use the Node version in `.nvmrc` (`nvm use`) so local builds match the Cloudflar
 single `localeUrl()` helper in `src/lib/url.ts` — never hand-write locale paths or call
 `getRelativeLocaleUrl` directly in templates.
 
-## Commit conventions
-
-These rules are **locked** and apply to every commit in this repository:
-
-- **Use a gitmoji at the start of every commit message** — e.g. `✨ Add ...`, `🐛 Fix ...`,
-  `🔖 Release ...`, `📝 Docs ...`, `♻️ Refactor ...`, `🎉 Scaffold ...`.
-- **Never add a `Co-Authored-By` trailer** (or any co-author trailer). Pushes with a
-  co-author trailer are rejected on this project.
-- **Describe changes technically** — what changed in the code and why. Commit messages
-  must **never reference external planning or tracker identifiers** — no milestone, phase,
-  plan, ticket, or requirement IDs of any kind. Such references have no meaning inside
-  this repository and are forbidden here.
-- **Branch naming: `feature/*`.** Work happens on `feature/<short-description>` branches.
-- **`main` is protected — pull-request only.** Direct pushes to `main` are blocked; changes
-  land through a reviewed PR whose preview build must pass.
-- **Never commit secrets or certificates** of any kind (API tokens, private keys, `.env`
-  files). `.env*` is gitignored — keep it that way.
-
 ## Deployment
 
 Pushes to `main` deploy to production via the Cloudflare Pages git integration; every branch
