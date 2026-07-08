@@ -23,7 +23,11 @@ Desktop I built myself.
 
 ## Notebook
 
-Avell Storm 460 for travel: Intel Core i7-14650HX, 32 GB DDR5, NVIDIA RTX 4060.
+Avell Storm 460 for travel.
+
+- CPU: Intel Core i7-14650HX
+- RAM: 32 GB DDR5
+- GPU: NVIDIA RTX 4060
 
 ## Homelab
 
@@ -45,8 +49,8 @@ Self-hosted services include Bitwarden (password manager) and Nextcloud, with On
 - Browser: Microsoft Edge.
 - Communication: Microsoft Teams and Outlook.
 - Music: Spotify.
-- Notes: Apple Notes.
-- Calendar: Google Calendar.
+- Notes: Motion.
+- Calendar: Motion.
 - Password manager: Bitwarden, self-hosted (see Homelab).
 - Backup and sync: Nextcloud plus OneDrive Business.
 
