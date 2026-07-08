@@ -43,24 +43,24 @@ const cases = sortCasesByOrder(await getCollection("portfolioPt"));
       {
         cases.map((item, index) => (
           <li class="border-border border-b py-6">
-            <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+            <div class="flex items-baseline gap-3">
+              <span class="text-text-muted/70 font-mono text-sm">
+                {formatCaseNumber(index)}
+              </span>
               <h3 class="text-lg font-semibold tracking-tight">
-                <span class="text-text-muted/70 font-mono text-sm">
-                  {formatCaseNumber(index)}
-                </span>
                 {item.data.title}
               </h3>
-              <a
-                href={localeUrl("pt", "portfolio/" + item.id)}
-                class="text-accent"
-              >
-                {ui.pt.readCaseLabel}
-              </a>
             </div>
             <p class="text-text-muted mt-2">{item.data.result}</p>
-            <p class="text-text-muted/70 mt-1 font-mono text-xs wrap-break-word">
+            <p class="text-text-muted mt-1 font-mono text-xs wrap-break-word">
               {item.data.stackHighlights.join(", ")}
             </p>
+            <a
+              href={localeUrl("pt", "portfolio/" + item.id)}
+              class="text-accent mt-3 inline-block"
+            >
+              {ui.pt.readCaseLabel}
+            </a>
           </li>
         ))
       }
