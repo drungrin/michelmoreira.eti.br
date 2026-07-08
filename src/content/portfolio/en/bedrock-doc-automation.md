@@ -7,7 +7,7 @@ stack:
   - "ECS Fargate"
   - "AWS Transcribe"
   - "Amazon Bedrock"
-  - "Claude Opus 4.5"
+  - "Claude Sonnet 4.5"
   - "RAG"
   - "pgvector"
   - "RDS PostgreSQL"
@@ -52,7 +52,7 @@ The official terminology comes from a RAG knowledge base. Reference documents li
 
 ## Technology
 
-AWS Step Functions for orchestration; ECS Fargate (2 vCPU, 8 GB) for processing; AWS Transcribe with diarization; Amazon Bedrock with Claude Opus 4.5 for generation; RAG with Amazon Bedrock Knowledge Base over pgvector on RDS PostgreSQL 16 (Titan v2 embeddings). DynamoDB tracks the status of each execution, SNS notifies on completion, and the processor runs in a Python 3.12 container. Resilience through exponential retry (3 attempts), a circuit breaker (opens on 5 failures, resets after 5 minutes), and transcription polling capped at 2 hours. Output in Markdown and DOCX. Estimated cost around US$ 1.45 per 3-hour video.
+AWS Step Functions for orchestration; ECS Fargate (2 vCPU, 8 GB) for processing; AWS Transcribe with diarization; Amazon Bedrock with Claude Sonnet 4.5 for generation; RAG with Amazon Bedrock Knowledge Base over pgvector on RDS PostgreSQL 16 (Titan v2 embeddings). DynamoDB tracks the status of each execution, SNS notifies on completion, and the processor runs in a Python 3.12 container. Resilience through exponential retry (3 attempts), a circuit breaker (opens on 5 failures, resets after 5 minutes), and transcription polling capped at 2 hours. Output in Markdown and DOCX. Estimated cost around US$ 1.45 per 3-hour video.
 
 ## Result
 
