@@ -11,7 +11,9 @@
 //
 // Usage: node scripts/generate-resume-pdfs.mjs
 
+import { writeFile } from "node:fs/promises";
 import { chromium } from "playwright";
+import { normalizePdf } from "./lib/normalize-pdf.mjs";
 
 const pages = [
   {
@@ -28,12 +30,12 @@ const browser = await chromium.launch();
 for (const { url, out } of pages) {
   const page = await browser.newPage();
   await page.goto(url, { waitUntil: "networkidle" });
-  await page.pdf({
-    path: out,
+  const buf = await page.pdf({
     format: "A4",
     printBackground: true,
     preferCSSPageSize: true, // lets the resume page's @page { size: A4 } rule win
   });
+  await writeFile(out, normalizePdf(buf));
   await page.close();
   console.log(`wrote ${out}`);
 }
