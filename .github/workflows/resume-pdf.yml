@@ -1,0 +1,60 @@
+name: Regenerate resume PDFs
+
+# Scoped narrowly: only runs when resume content, the resume page templates,
+# the print CSS, or the generator script itself change — not on every push.
+# (Pitfall 5: the trigger paths must cover everything that can change what
+# gets printed, or a stale PDF can silently ship alongside a fresh page.)
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/content/resume/**"
+      - "src/pages/curriculo.astro"
+      - "src/pages/en/resume.astro"
+      - "src/styles/global.css"
+      - "scripts/generate-resume-pdfs.mjs"
+
+# Scoped to this workflow file only — not repo-wide. The default GITHUB_TOKEN
+# (no PAT) is used for the commit-back step below; it does not re-trigger a
+# new Actions run for pushes it makes, so the commit message intentionally
+# carries no CI-skip marker of any kind (Pitfall 1: Cloudflare Pages itself
+# honors that class of marker in a commit message and would skip the very
+# deploy that ships the new PDF).
+permissions:
+  contents: write
+
+concurrency:
+  group: resume-pdf-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - run: npm ci
+
+      - run: npx playwright install --with-deps chromium
+
+      - run: npm run build
+
+      - name: Start preview server
+        run: npm run preview -- --port 4321 &
+
+      - name: Wait for preview server
+        run: until curl -sf -o /dev/null http://localhost:4321/curriculo; do sleep 1; done
+
+      - run: node scripts/generate-resume-pdfs.mjs
+
+      - name: Commit and push regenerated PDFs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/michel-moreira-cv-pt.pdf public/michel-moreira-cv-en.pdf
+          git diff --cached --quiet || git commit -m "chore: regenerate resume PDFs from updated content"
+          git push

@@ -1,0 +1,51 @@
+---
+// EN portfolio case detail, one route per "portfolioEn" entry, built as
+// dist/en/portfolio/{slug}.html and served at "/en/portfolio/{slug}"
+// (D-08). Human-reviewed translation of the PT case, checked in the PR
+// preview before merge. The counterpart is resolved by translationKey
+// against the "portfolioPt" collection (never by slug/id, Pitfall 4) and
+// passed as counterpartPath; a missing counterpart resolves to undefined
+// and BaseLayout/LanguageSwitcher fall back to the locale home rather than
+// erroring.
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Prose from "../../../components/Prose.astro";
+import {
+  portfolioCounterpartUrl,
+  type PortfolioCounterpartEntry,
+} from "../../../lib/portfolioPairing";
+
+export async function getStaticPaths() {
+  const cases = await getCollection("portfolioEn");
+  const ptEntries: PortfolioCounterpartEntry[] = (
+    await getCollection("portfolioPt")
+  ).map((c) => ({ translationKey: c.data.translationKey, slug: c.id }));
+
+  return cases.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry, ptEntries },
+  }));
+}
+
+const { entry, ptEntries } = Astro.props;
+const { Content } = await render(entry);
+const counterpartPath = portfolioCounterpartUrl(
+  ptEntries,
+  entry.data.translationKey,
+  "pt",
+);
+---
+
+<BaseLayout locale="en" counterpartPath={counterpartPath}>
+  <section class="mt-12">
+    <h1 class="text-4xl leading-[1.1] font-semibold tracking-tight sm:text-5xl">
+      {entry.data.title}
+    </h1>
+    <p class="text-text-muted mt-2 text-sm">
+      {entry.data.period} · {entry.data.stack.join(", ")}
+    </p>
+    <Prose>
+      <Content />
+    </Prose>
+  </section>
+</BaseLayout>

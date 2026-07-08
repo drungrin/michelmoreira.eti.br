@@ -4,16 +4,21 @@ import { LOCALE_NAME, ui } from "../i18n/ui";
 
 interface Props {
   locale: Locale;
+  /** Current page's exact translated counterpart (e.g. "/en/resume" from
+   * "/curriculo"). Falls back to the locale root when a page hasn't computed
+   * one, so pages without a pairing still render a safe (if imprecise) link. */
+  counterpartPath?: string;
 }
 
-const { locale } = Astro.props;
+const { locale, counterpartPath } = Astro.props;
 
 const linkClass =
   "text-accent hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 ---
 
 <!-- Native language names, no flags. The current locale is inert text; the
-     other locale links to its exact counterpart page through localeUrl. -->
+     other locale links to its exact counterpart page — counterpartPath when
+     the page has computed one (pagePairUrl), else the locale root. -->
 <nav aria-label={ui[locale].languageLabel} class="text-sm">
   {
     locale === "pt" ? (
@@ -21,7 +26,7 @@ const linkClass =
         {LOCALE_NAME.pt}
       </span>
     ) : (
-      <a href={localeUrl("pt")} class={linkClass}>
+      <a href={counterpartPath ?? localeUrl("pt")} class={linkClass}>
         {LOCALE_NAME.pt}
       </a>
     )
@@ -33,7 +38,7 @@ const linkClass =
         {LOCALE_NAME.en}
       </span>
     ) : (
-      <a href={localeUrl("en")} class={linkClass}>
+      <a href={counterpartPath ?? localeUrl("en")} class={linkClass}>
         {LOCALE_NAME.en}
       </a>
     )

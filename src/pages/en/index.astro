@@ -1,8 +1,12 @@
 ---
 // EN home, built as dist/en.html and served at "/en" (no trailing slash, the
 // canonical form). The EN copy is a human-reviewed translation of the PT page,
-// checked in the PR preview before merge. Structure mirrors the PT page.
+// checked in the PR preview before merge. Structure mirrors the PT page,
+// including the CTA list linking to the resume and portfolio pages
+// (pagePairUrl) plus a direct mailto contact (D-11/D-16, no /contact page).
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { pagePairUrl } from "../../lib/pagePairs";
+import { ui } from "../../i18n/ui";
 ---
 
 <BaseLayout locale="en">
@@ -12,7 +16,42 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     </h1>
     <p class="text-text-muted mt-2">Senior Software Architect</p>
     <p class="mt-4">
-      20+ years building software. Architecture, low-code, and DevOps.
+      Software architect for more than 20 years, from migrating a
+      point-of-sale system from Clipper to Delphi in 2002 to government
+      systems on IBM WebSphere ND serving the entire population of Rondônia
+      State. Today I use AI in production as a transversal architect at
+      Techne.
     </p>
+  </section>
+  <section class="mt-12">
+    <ul class="flex flex-col gap-8">
+      <li>
+        <a
+          href={pagePairUrl("resume", "en")}
+          class="text-2xl font-semibold tracking-tight"
+        >
+          {ui.en.ctaResumeTitle}
+        </a>
+        <p class="text-text-muted mt-2">{ui.en.ctaResumeDesc}</p>
+      </li>
+      <li>
+        <a
+          href={pagePairUrl("portfolio", "en")}
+          class="text-2xl font-semibold tracking-tight"
+        >
+          {ui.en.ctaPortfolioTitle}
+        </a>
+        <p class="text-text-muted mt-2">{ui.en.ctaPortfolioDesc}</p>
+      </li>
+      <li>
+        <a
+          href="mailto:drungrin@gmail.com"
+          class="text-2xl font-semibold tracking-tight"
+        >
+          {ui.en.ctaContactTitle}
+        </a>
+        <p class="text-text-muted mt-2">{ui.en.ctaContactDesc}</p>
+      </li>
+    </ul>
   </section>
 </BaseLayout>

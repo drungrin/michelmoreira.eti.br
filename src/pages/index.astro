@@ -1,8 +1,12 @@
 ---
 // PT home (root, default locale), built as dist/index.html and served at "/".
-// Content renders inside the layout's main element; contact links live in the
-// site footer. The counterpart page for this one is /en.
+// Content renders inside the layout's main element; the CTA list below the
+// hero links to the resume and portfolio pages (pagePairUrl) plus a direct
+// mailto contact (D-11/D-16, no /contato page). The counterpart page for
+// this one is /en.
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { pagePairUrl } from "../lib/pagePairs";
+import { ui } from "../i18n/ui";
 ---
 
 <BaseLayout locale="pt">
@@ -12,7 +16,41 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </h1>
     <p class="text-text-muted mt-2">Senior Software Architect</p>
     <p class="mt-4">
-      20+ anos construindo software. Arquitetura, low-code e DevOps.
+      Arquiteto de software há mais de 20 anos, da migração de um sistema de
+      ponto de venda de Clipper para Delphi em 2002 a sistemas de governo em
+      IBM WebSphere ND atendendo toda a população de Rondônia. Hoje uso IA em
+      produção como arquiteto transversal na Techne.
     </p>
+  </section>
+  <section class="mt-12">
+    <ul class="flex flex-col gap-8">
+      <li>
+        <a
+          href={pagePairUrl("resume", "pt")}
+          class="text-2xl font-semibold tracking-tight"
+        >
+          {ui.pt.ctaResumeTitle}
+        </a>
+        <p class="text-text-muted mt-2">{ui.pt.ctaResumeDesc}</p>
+      </li>
+      <li>
+        <a
+          href={pagePairUrl("portfolio", "pt")}
+          class="text-2xl font-semibold tracking-tight"
+        >
+          {ui.pt.ctaPortfolioTitle}
+        </a>
+        <p class="text-text-muted mt-2">{ui.pt.ctaPortfolioDesc}</p>
+      </li>
+      <li>
+        <a
+          href="mailto:drungrin@gmail.com"
+          class="text-2xl font-semibold tracking-tight"
+        >
+          {ui.pt.ctaContactTitle}
+        </a>
+        <p class="text-text-muted mt-2">{ui.pt.ctaContactDesc}</p>
+      </li>
+    </ul>
   </section>
 </BaseLayout>
