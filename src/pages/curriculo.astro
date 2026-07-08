@@ -51,6 +51,9 @@ const { experience, skills, education } = entry.data;
               {job.role}, {job.company}
             </h3>
             <p class="text-text-muted mt-1 text-sm">{job.period}</p>
+            {job.note && (
+              <p class="text-text-muted mt-1 text-sm italic">{job.note}</p>
+            )}
             <ul class="achievements mt-4 flex list-disc flex-col gap-2 pl-5">
               {job.achievements.map((achievement) => (
                 <li>{achievement}</li>
