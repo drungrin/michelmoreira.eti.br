@@ -55,6 +55,14 @@ experience:
       - "Migrated the point-of-sale system from Clipper to Delphi."
 skills:
   core:
+    - label: "AI / GenAI"
+      items:
+        - "RAG"
+        - "AI agents"
+        - "MCP (Model Context Protocol)"
+        - "Amazon Bedrock (Claude)"
+        - "Context and prompt engineering"
+        - "Evaluation and guardrails"
     - label: "Languages"
       items:
         - "Java"
@@ -74,7 +82,7 @@ skills:
         - "PostgreSQL"
         - "SQL Server"
         - "Oracle"
-        - "pgvector / RAG"
+        - "pgvector"
     - label: "Architecture & practice"
       items:
         - "Serverless, event-driven architecture"

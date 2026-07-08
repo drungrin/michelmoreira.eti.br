@@ -55,6 +55,14 @@ experience:
       - "Migrei o sistema de ponto de venda de Clipper para Delphi."
 skills:
   core:
+    - label: "IA / GenAI"
+      items:
+        - "RAG"
+        - "Agentes de IA"
+        - "MCP (Model Context Protocol)"
+        - "Amazon Bedrock (Claude)"
+        - "Engenharia de contexto e prompt"
+        - "Avaliação e guardrails"
     - label: "Linguagens"
       items:
         - "Java"
@@ -74,7 +82,7 @@ skills:
         - "PostgreSQL"
         - "SQL Server"
         - "Oracle"
-        - "pgvector / RAG"
+        - "pgvector"
     - label: "Arquitetura & práticas"
       items:
         - "Arquitetura serverless e orientada a eventos"
