@@ -20,7 +20,18 @@ const resumeSchema = z.object({
       achievements: z.array(z.string()),
     }),
   ),
-  skills: z.array(z.string()),
+  skills: z.object({
+    // Curated, grouped core stack; historical is a muted "also worked with"
+    // line; languages is spoken-language proficiency.
+    core: z.array(
+      z.object({
+        label: z.string(),
+        items: z.array(z.string()),
+      }),
+    ),
+    historical: z.array(z.string()),
+    languages: z.array(z.string()),
+  }),
   education: z.array(
     z.object({
       degree: z.string(),

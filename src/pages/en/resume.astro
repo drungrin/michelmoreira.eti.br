@@ -17,7 +17,12 @@ const { Content } = await render(entry);
 const { experience, skills, education } = entry.data;
 ---
 
-<BaseLayout locale="en" counterpartPath={pagePairUrl("resume", "pt")}>
+<BaseLayout
+  locale="en"
+  counterpartPath={pagePairUrl("resume", "pt")}
+  pageTitle="Resume · Michel Moreira"
+  description="Michel Moreira's resume: 20+ years in software architecture, experience, skills, education, and a PDF download."
+>
   <section class="mt-12">
     <h1 class="text-4xl leading-[1.1] font-semibold tracking-tight sm:text-5xl">
       {entry.data.name}
@@ -56,9 +61,26 @@ const { experience, skills, education } = entry.data;
     </ol>
 
     <h2 class="mt-12 text-2xl font-semibold tracking-tight">Skills</h2>
-    <ul class="mt-4 flex list-disc flex-col gap-2 pl-5">
-      {skills.map((skill) => <li>{skill}</li>)}
-    </ul>
+    <div class="mt-4 flex flex-col gap-3">
+      {
+        skills.core.map((group) => (
+          <div class="flex flex-col gap-0.5 sm:flex-row sm:gap-4">
+            <h3 class="text-text-muted shrink-0 text-sm font-semibold sm:w-44 sm:pt-0.5">
+              {group.label}
+            </h3>
+            <p>{group.items.join(" · ")}</p>
+          </div>
+        ))
+      }
+    </div>
+    <p class="text-text-muted mt-4 text-sm">
+      <span class="font-semibold">Historical:</span>
+      {skills.historical.join(" · ")}
+    </p>
+    <p class="text-text-muted mt-2 text-sm">
+      <span class="font-semibold">Languages:</span>
+      {skills.languages.join(" · ")}
+    </p>
 
     <h2 class="mt-12 text-2xl font-semibold tracking-tight">Education</h2>
     <ul class="mt-4 flex flex-col gap-2">
