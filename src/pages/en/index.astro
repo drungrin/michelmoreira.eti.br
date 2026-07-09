@@ -1,12 +1,18 @@
 ---
 // EN home, built as dist/en.html and served at "/en" (no trailing slash, the
-// canonical form). The EN copy is a human-reviewed translation of the PT page,
-// checked in the PR preview before merge. Structure mirrors the PT page,
-// including the CTA list linking to the resume and portfolio pages
-// (pagePairUrl) plus a direct mailto contact (D-11/D-16, no /contact page).
+// canonical form). Structure mirrors the PT page: hero, then a typographic
+// Selected Work list from the portfolioEn collection (result line before stack),
+// closing on a single accent CTA. The EN copy is a draft, reviewed in the PR
+// preview before merge; contact links live site-wide in Footer.astro and are not
+// repeated here (D-03). Counterpart page: /.
+import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { localeUrl } from "../../lib/url";
 import { pagePairUrl } from "../../lib/pagePairs";
+import { sortCasesByOrder, formatCaseNumber } from "../../lib/caseDisplay";
 import { ui } from "../../i18n/ui";
+
+const cases = sortCasesByOrder(await getCollection("portfolioEn"));
 ---
 
 <BaseLayout locale="en">
@@ -15,18 +21,14 @@ import { ui } from "../../i18n/ui";
       Michel Moreira
     </h1>
     <p class="text-text-muted mt-2">Senior Software Architect</p>
-    <h2
-      class="mt-6 text-xl font-semibold tracking-tight text-balance sm:text-2xl"
-    >
-      I turn impossible modernizations into deliverable projects.
-    </h2>
-    <p class="mt-4">
-      I modernize legacy enterprise systems with LLM and AI-agent engineering.
-      Projects too large to rewrite finally come out of the drawer. Recently I
-      migrated VB6 batch processes to Java and Spring Batch with 1:1 functional
-      parity, preserving the business behavior.
+    <p class="mt-6 max-w-2xl">
+      <strong class="font-semibold">I turn impossible modernizations into
+      deliverable projects.</strong> I modernize legacy enterprise systems with
+      LLM and AI-agent engineering. Projects too large to rewrite finally come
+      out of the drawer. Recently I migrated VB6 batch processes to Java and
+      Spring Batch with 1:1 functional parity, preserving the business behavior.
     </p>
-    <p class="mt-4">
+    <p class="mt-4 max-w-2xl">
       That is more than 20 years running the same thesis of technological
       leverage: I co-created commercial low-code platforms (Softwell Maker,
       Cronapp) and designed government systems on IBM WebSphere serving the
@@ -34,35 +36,45 @@ import { ui } from "../../i18n/ui";
       were once economically unfeasible.
     </p>
   </section>
-  <section class="mt-12">
-    <ul class="flex flex-col gap-8">
-      <li>
-        <a
-          href={pagePairUrl("resume", "en")}
-          class="text-2xl font-semibold tracking-tight"
-        >
-          {ui.en.ctaResumeTitle}
-        </a>
-        <p class="text-text-muted mt-2">{ui.en.ctaResumeDesc}</p>
-      </li>
-      <li>
-        <a
-          href={pagePairUrl("portfolio", "en")}
-          class="text-2xl font-semibold tracking-tight"
-        >
-          {ui.en.ctaPortfolioTitle}
-        </a>
-        <p class="text-text-muted mt-2">{ui.en.ctaPortfolioDesc}</p>
-      </li>
-      <li>
-        <a
-          href="mailto:michel@michelmoreira.eti.br"
-          class="text-2xl font-semibold tracking-tight"
-        >
-          {ui.en.ctaContactTitle}
-        </a>
-        <p class="text-text-muted mt-2">{ui.en.ctaContactDesc}</p>
-      </li>
+
+  <section class="mt-16">
+    <h2 class="text-text-muted/70 text-sm tracking-wide uppercase">
+      {ui.en.selectedWorkLabel}
+    </h2>
+    <ul class="mt-6 flex flex-col">
+      {
+        cases.map((item, index) => (
+          <li class="border-border border-b py-6">
+            <div class="flex items-baseline gap-3">
+              <span class="text-text-muted/70 font-mono text-sm">
+                {formatCaseNumber(index)}
+              </span>
+              <h3 class="text-lg font-semibold tracking-tight">
+                {item.data.title}
+              </h3>
+            </div>
+            <p class="text-text-muted mt-2">{item.data.result}</p>
+            <p class="text-text-muted mt-1 font-mono text-xs wrap-break-word">
+              {item.data.stackHighlights.join(", ")}
+            </p>
+            <a
+              href={localeUrl("en", "portfolio/" + item.id)}
+              class="text-accent mt-3 inline-block"
+            >
+              {ui.en.readCaseLabel}
+            </a>
+          </li>
+        ))
+      }
     </ul>
+  </section>
+
+  <section class="mt-12">
+    <a
+      href={pagePairUrl("portfolio", "en")}
+      class="text-accent text-2xl font-semibold tracking-tight"
+    >
+      {ui.en.viewAllCasesLabel}
+    </a>
   </section>
 </BaseLayout>

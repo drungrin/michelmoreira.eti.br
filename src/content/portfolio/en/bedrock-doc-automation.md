@@ -14,6 +14,13 @@ stack:
   - "DynamoDB"
 order: 2
 summary: "A seven-stage serverless pipeline that turns training videos into technical documentation, with three anti-hallucination layers deciding where the AI may diverge and where it may not."
+result: "Three anti-hallucination layers turn hours of video into manuals."
+stackHighlights:
+  - "AWS Step Functions"
+  - "Amazon Bedrock"
+  - "RAG"
+  - "pgvector"
+  - "ECS Fargate"
 ---
 
 ## Problem

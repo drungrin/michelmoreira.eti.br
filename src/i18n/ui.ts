@@ -38,12 +38,9 @@ export const ui: Record<
     navPortfolio: string;
     navUses: string;
     navNow: string;
-    ctaResumeTitle: string;
-    ctaResumeDesc: string;
-    ctaPortfolioTitle: string;
-    ctaPortfolioDesc: string;
-    ctaContactTitle: string;
-    ctaContactDesc: string;
+    selectedWorkLabel: string;
+    readCaseLabel: string;
+    viewAllCasesLabel: string;
     pdfDownloadLabel: string;
     nowUpdatedLabel: string;
   }
@@ -61,12 +58,9 @@ export const ui: Record<
     navPortfolio: "Portfolio",
     navUses: "Uses",
     navNow: "Now",
-    ctaResumeTitle: "Currículo",
-    ctaResumeDesc: "Experiência, formação e o PDF para download.",
-    ctaPortfolioTitle: "Portfolio",
-    ctaPortfolioDesc: "Cases de arquitetura ao longo de 20 anos de carreira.",
-    ctaContactTitle: "Contato",
-    ctaContactDesc: "Envie um e-mail direto para michel@michelmoreira.eti.br.",
+    selectedWorkLabel: "Arquitetura na prática",
+    readCaseLabel: "Ler o case →",
+    viewAllCasesLabel: "Ver todos os cases →",
     pdfDownloadLabel: "Baixar currículo em PDF",
     nowUpdatedLabel: "Atualizado em",
   },
@@ -83,12 +77,9 @@ export const ui: Record<
     navPortfolio: "Portfolio",
     navUses: "Uses",
     navNow: "Now",
-    ctaResumeTitle: "Resume",
-    ctaResumeDesc: "Experience, education, and the PDF download.",
-    ctaPortfolioTitle: "Portfolio",
-    ctaPortfolioDesc: "Architecture cases across a 20 year career.",
-    ctaContactTitle: "Contact",
-    ctaContactDesc: "Send an email directly to michel@michelmoreira.eti.br.",
+    selectedWorkLabel: "Selected work",
+    readCaseLabel: "Read the case →",
+    viewAllCasesLabel: "See all cases →",
     pdfDownloadLabel: "Download resume as PDF",
     nowUpdatedLabel: "Updated",
   },

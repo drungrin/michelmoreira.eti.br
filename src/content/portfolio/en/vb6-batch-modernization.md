@@ -16,6 +16,13 @@ stack:
   - "Azure DevOps"
 order: 1
 summary: "Architecture, skeleton, and method to unlock a rewrite stalled for years: a versioned contract, characterization tests against the original binary, and an incremental track for the team to execute."
+result: "An unfeasible big bang became a safe, incremental track."
+stackHighlights:
+  - "Java 25"
+  - "Spring Batch"
+  - "Testcontainers"
+  - "MCP"
+  - "Azure DevOps"
 ---
 
 ## Problem
